@@ -15,6 +15,7 @@ const ForescastPage = () => {
         <h1>{forescastData?.name}</h1>
         <p>Temperature: {forescastData?.main.temp}°C</p>
         <p>Description: {forescastData?.weather[0].description}</p>
+
     </div>
 }
 
