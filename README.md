@@ -27,6 +27,7 @@ Front-end task for Marketer.com
 - TypeScript
 - Tanstack-query
 - Axios
+- Shadcn (design system/components library)
 
 ## Architecture
 
