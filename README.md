@@ -1,4 +1,4 @@
-# Marketer Weather App
+# Marketer App
 
 Front-end task for Marketer.com
 
@@ -31,3 +31,6 @@ Front-end task for Marketer.com
 ## Architecture
 
 - [Bulletproof-react](https://github.com/alan2207/bulletproof-react)
+
+## API
+- Open Wheather Map 2.5
