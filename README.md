@@ -21,10 +21,12 @@ Front-end task for Marketer.com
 
 # Assumptions
 
-## Tech
+## Tech stack
 
 - React
 - TypeScript
+- Tanstack-query
+- Axios
 
 ## Architecture
 
