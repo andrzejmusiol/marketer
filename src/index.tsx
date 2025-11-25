@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from '@/features/main/main';
+import ForescastPage from '@/features/forescast/pages/forescast';
 import '@/index.css';
+import { QueryProvider } from '@/app/query-provider';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <App />
+        <QueryProvider>
+            <ForescastPage />
+        </QueryProvider>
     </React.StrictMode>
 );
 
