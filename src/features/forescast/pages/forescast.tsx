@@ -4,10 +4,10 @@ import { useState } from "react";
 import { Geocoding } from "@/shared/types/types";
 
 const ForescastPage = () => {
-    const [selectedCity, setSelectedCity] = useState<string | null>(null);
+    const [selectedCity, setSelectedCity] = useState<Geocoding | null>(null);
 
     const handleCitySelect = (city: Geocoding) => {
-        setSelectedCity(city.name)
+        setSelectedCity(city)
     }
 
     return <div>
