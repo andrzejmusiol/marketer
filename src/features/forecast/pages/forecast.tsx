@@ -10,18 +10,20 @@ const ForecastPage = () => {
 
     const handleCitySelect = (city: Geocoding) => setSelectedCity(city)
 
-    return <div className="h-screen w-screen">
-        <nav className="flex items-center justify-between p-4">
-            <h1 className="text-2xl font-bold">Weather App</h1>
-            <SearchCombobox onCitySelect={handleCitySelect} />
-        </nav>
-        <main className="flex justify-center items-center">
-            {selectedCity ? <CityWeather city={selectedCity} /> : <GeolocationWeather />}
-        </main>
-        <div className="flex items-center justify-center p-4">
-            <RecentSearches handleSelect={handleCitySelect} />
+    return (
+        <div className="h-screen w-screen flex flex-col overflow-hidden">
+            <nav className="flex items-center justify-between p-4 flex-shrink-0">
+                <h1 className="text-2xl font-bold">Weather App</h1>
+                <SearchCombobox onCitySelect={handleCitySelect} />
+            </nav>
+            <main className="flex justify-center items-center flex-1 min-h-0">
+                {selectedCity ? <CityWeather city={selectedCity} /> : <GeolocationWeather />}
+            </main>
+            <div className="flex items-center justify-center p-4 flex-shrink-0">
+                <RecentSearches handleSelect={handleCitySelect} />
+            </div>
         </div>
-    </div>
+    )
 }
 
 export default ForecastPage;
