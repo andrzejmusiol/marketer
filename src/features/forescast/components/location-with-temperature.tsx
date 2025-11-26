@@ -16,9 +16,10 @@ export const LocationWithTemperature: FC<Props> = memo(({ city }) => {
 
     return (
         <div>
+            <img src={`https://openweathermap.org/img/wn/${forescastData.weather[0].icon}.png`} alt={forescastData.weather[0].description} />
             <p>{forescastData.name}</p>
             <p>{city.state}, {city.country}</p>
-            <h2>{forescastData.main.temp}°C</h2>
+            <h2>{forescastData.main.temp}°C | {forescastData.main.feels_like}°C</h2>
         </div>
     )
 })

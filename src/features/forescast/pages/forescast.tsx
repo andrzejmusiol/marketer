@@ -6,9 +6,7 @@ import { Geocoding } from "@/shared/types/types";
 const ForescastPage = () => {
     const [selectedCity, setSelectedCity] = useState<Geocoding | null>(null);
 
-    const handleCitySelect = (city: Geocoding) => {
-        setSelectedCity(city)
-    }
+    const handleCitySelect = (city: Geocoding) => setSelectedCity(city)
 
     return <div>
         <SearchCombobox onCitySelect={handleCitySelect} />
