@@ -1,5 +1,4 @@
 import { FC, memo } from "react"
-
 import { Geocoding } from "@/shared/types/types";
 import { useForecast } from "@/features/forecast/hooks/use-forecast";
 
@@ -7,7 +6,7 @@ type Props = {
     city: Geocoding | null
 }
 
-export const LocationWithTemperature: FC<Props> = memo(({ city }) => {
+export const CityWeather: FC<Props> = memo(({ city }) => {
     const { forecastData, forecastLoading, forecastError } = useForecast(city?.lat || 0, city?.lon || 0);
 
     if (!city) { return <div>No city selected</div> }
