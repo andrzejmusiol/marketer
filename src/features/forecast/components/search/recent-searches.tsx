@@ -12,23 +12,20 @@ type Props = {
 export const RecentSearches: FC<Props> = ({ handleSelect }) => {
     const { recentSearches, clearRecentSearches } = useRecentSearches()
 
-    if (recentSearches.length === 0) {
-        return null
-    }
-
     return (
         <div className="w-full">
-            <div className="flex items-center">
-                <p className="text-xs font-medium">Recent searches </p>
-                <Button onClick={clearRecentSearches} variant="outline" className="text-xs py-0.5">
-                    Clear
+            <div className="flex items-center justify-between">
+                <p className="text-xs font-medium">Recent searches:</p>
+                <Button onClick={clearRecentSearches} variant="ghost" className="text-xs py-0.5">
+                    Clear searches
                 </Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+            {recentSearches.length > 0 && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {recentSearches.map((city) => (
                     <RecentSearch key={generateCityKey(city)} city={city} handleSelect={handleSelect} />
                 ))}
             </div>
+            }
 
         </div>
     )

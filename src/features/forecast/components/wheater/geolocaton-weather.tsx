@@ -4,6 +4,7 @@ import { useGeolocation } from "@/features/forecast/hooks/use-geolocation";
 import { Loading } from "@/shared/components/states/loading";
 import { Error } from "@/shared/components/states/error";
 import { NoData } from "@/shared/components/states/no-data";
+import { Weather } from "./weather";
 
 export const GeolocationWeather: FC = () => {
     const { lat, lon } = useGeolocation()
@@ -15,12 +16,5 @@ export const GeolocationWeather: FC = () => {
     if (forecastLoading) { return <Loading /> }
     if (forecastError) { return <Error message={forecastError.message} /> }
 
-    return (
-        <div>
-            <h1>Your location</h1>
-            <img src={`https://openweathermap.org/img/wn/${forecastData.weather[0].icon}.png`} alt={forecastData.weather[0].description} />
-            <p>{forecastData.name}</p>
-            <h2>{forecastData.main.temp}°C | {forecastData.main.feels_like}°C</h2>
-        </div>
-    )
+    return <Weather forecastData={forecastData} />
 }
