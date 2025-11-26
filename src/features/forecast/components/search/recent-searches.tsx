@@ -14,7 +14,7 @@ export const RecentSearches: FC<Props> = ({ handleSelect }) => {
 
     return (
         <div className="w-full">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between my-2">
                 <p className="text-xs font-medium">Recent searches:</p>
                 <Button onClick={clearRecentSearches} variant="ghost" className="text-xs py-0.5">
                     Clear searches

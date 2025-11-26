@@ -20,6 +20,7 @@ import { useRecentSearches } from "@/features/forecast/hooks/user-recent-search"
 import { generateCityKey } from "@/features/forecast/utils/utils"
 import { Loading } from "@/shared/components/states/loading"
 import { Error } from "@/shared/components/states/error"
+import { Search } from "lucide-react"
 
 type Props = {
     onCitySelect?: (city: Geocoding) => void
@@ -50,7 +51,9 @@ export const SearchCombobox: FC<Props> = ({ onCitySelect }) => {
         <Popover open={open} onOpenChange={setOpen} modal={false}>
             <PopoverTrigger asChild>
                 <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                     <Input
+                        className="pl-10"
                         placeholder="Search city..."
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
