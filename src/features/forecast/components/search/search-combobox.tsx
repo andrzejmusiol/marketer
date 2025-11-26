@@ -13,9 +13,11 @@ import {
 import { Input } from "@/shared/components/ui/input"
 import { FC } from "react"
 import { Geocoding } from "@/shared/types/types"
-import { useCity } from "../hooks/use-city"
+import { useCity } from "../../hooks/use-city"
 import { useDebounce } from "@/shared/hooks/use-debounce"
 import { PopoverTrigger } from "@radix-ui/react-popover"
+import { useRecentSearches } from "../../hooks/user-recent-search"
+import { RecentSearches } from "./recent-search"
 
 type Props = {
     onCitySelect?: (city: Geocoding) => void
@@ -26,9 +28,16 @@ export const SearchCombobox: FC<Props> = ({ onCitySelect }) => {
     const [value, setValue] = useState("")
     const debouncedValue = useDebounce(value, 500)
     const { cities, isLoading, error } = useCity(debouncedValue);
+    const { recentSearches, addRecentSearch } = useRecentSearches()
 
     useEffect(() => debouncedValue.length >= 2 && (cities.length > 0 || isLoading) ? setOpen(true) : setOpen(false)
         , [debouncedValue, cities.length, isLoading])
+
+    useEffect(() => {
+        if (value.length === 0 && recentSearches.length > 0) {
+            setOpen(true)
+        }
+    }, [value.length, recentSearches.length])
 
     if (error) {
         return <div className="text-red-500">{error.message}</div>
@@ -37,6 +46,7 @@ export const SearchCombobox: FC<Props> = ({ onCitySelect }) => {
     const handleSelect = (city: Geocoding) => {
         setValue(city.name)
         setOpen(false)
+        addRecentSearch(city)
         onCitySelect?.(city)
     }
 
@@ -58,6 +68,7 @@ export const SearchCombobox: FC<Props> = ({ onCitySelect }) => {
             >
                 <Command shouldFilter={false}>
                     <CommandList>
+                        <RecentSearches handleSelect={handleSelect} />
                         {isLoading ? (
                             <div className="py-6 text-center text-sm text-muted-foreground">
                                 Loading...

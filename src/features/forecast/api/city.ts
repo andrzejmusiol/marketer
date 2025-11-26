@@ -1,4 +1,4 @@
-import { GeocodingResponse } from "@/features/forescast/api/types"
+import { GeocodingResponse } from "@/features/forecast/api/types"
 import { API } from "@/shared/configs/api"
 
 export const city = async (query: string): Promise<GeocodingResponse[]> => {

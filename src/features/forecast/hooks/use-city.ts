@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { city } from "@/features/forescast/api/city"
+import { city } from "@/features/forecast/api/city"
 
 export const useCity = (query: string, enabled: boolean = true) => {
     const {

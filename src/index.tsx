@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import ForescastPage from '@/features/forescast/pages/forescast';
 import '@/globals.css'
 import { QueryProvider } from '@/app/query-provider';
+import ForecastPage from '@/features/forecast/pages/forescast';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <QueryProvider>
-            <ForescastPage />
+            <ForecastPage />
         </QueryProvider>
     </React.StrictMode>
 );

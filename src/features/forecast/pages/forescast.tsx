@@ -1,9 +1,9 @@
-import { LocationWithTemperature } from "@/features/forescast/components/location-with-temperature";
-import { SearchCombobox } from "@/features/forescast/components/search-combobox";
+import { LocationWithTemperature } from "@/features/forecast/components/wheater/location-with-temperature";
+import { SearchCombobox } from "@/features/forecast/components/search/search-combobox";
 import { useState } from "react";
 import { Geocoding } from "@/shared/types/types";
 
-const ForescastPage = () => {
+const ForecastPage = () => {
     const [selectedCity, setSelectedCity] = useState<Geocoding | null>(null);
 
     const handleCitySelect = (city: Geocoding) => setSelectedCity(city)
@@ -14,5 +14,5 @@ const ForescastPage = () => {
     </div>
 }
 
-export default ForescastPage;
+export default ForecastPage;
 
