@@ -13,11 +13,12 @@ import {
 import { Input } from "@/shared/components/ui/input"
 import { FC } from "react"
 import { Geocoding } from "@/shared/types/types"
-import { useCity } from "../../hooks/use-city"
+import { useCity } from "@/features/forecast/hooks/use-city"
 import { useDebounce } from "@/shared/hooks/use-debounce"
 import { PopoverTrigger } from "@radix-ui/react-popover"
-import { useRecentSearches } from "../../hooks/user-recent-search"
-import { RecentSearches } from "./recent-search"
+import { useRecentSearches } from "@/features/forecast/hooks/user-recent-search"
+import { RecentSearches } from "@/features/forecast/components/search/recent-search"
+import { generateCityKey } from "@/features/forecast/utils/utils"
 
 type Props = {
     onCitySelect?: (city: Geocoding) => void
@@ -79,7 +80,7 @@ export const SearchCombobox: FC<Props> = ({ onCitySelect }) => {
                             <CommandGroup>
                                 {cities.map((city) => (
                                     <CommandItem
-                                        key={`${city.name}-${city.lat}-${city.lon}`}
+                                        key={generateCityKey(city)}
                                         value={`${city.name}-${city.state}-${city.country}`}
                                         onSelect={() => handleSelect(city)}
                                     >
