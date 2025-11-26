@@ -10,7 +10,7 @@ export type Weather = {
     icon: string
 }
 
-export type Forecast = {
+export type MainForecast = {
     temp: number
     feels_like: number
     temp_min: number
@@ -37,4 +37,29 @@ export type Location = {
     country: string
     sunrise: number
     sunset: number
+}
+
+export type Forecast = {
+    coord: Coord
+    weather: Array<Weather>
+    base: string
+    main: MainForecast
+    visibility: number
+    wind: Wind
+    clouds: Clouds
+    dt: number
+    sys: Location
+    timezone: number
+    id: number
+    name: string
+    cod: number
+}
+
+export type Geocoding = {
+    name: string
+    local_names?: Record<string, string>
+    lat: number
+    lon: number
+    country: string
+    state?: string
 }
