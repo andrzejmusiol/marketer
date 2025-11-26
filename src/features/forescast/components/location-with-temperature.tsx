@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const LocationWithTemperature: FC<Props> = memo(({ city }) => {
-    const { forescastData, forescastLoading, forescastError } = useForescast(city?.name || null);
+    const { forescastData, forescastLoading, forescastError } = useForescast(city?.lat || 0, city?.lon || 0);
 
     if (!city) { return <div>No city selected</div> }
     if (!forescastData) { return <div>No data</div> }

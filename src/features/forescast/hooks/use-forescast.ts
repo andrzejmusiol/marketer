@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query"
 import { forescast } from "@/features/forescast/api/forecast"
 
-export const useForescast = (city: string | null) => {
+export const useForescast = (lat: number, lon: number) => {
     const {
         data: forescastData,
         isLoading: forescastLoading,
         error: forescastError,
     } = useQuery({
-        queryKey: ['forescast', city],
+        queryKey: ['forescast', lat, lon],
         queryFn: () => {
-            return forescast(city)
+            return forescast(lat, lon)
         },
-        enabled: !!city,
+        enabled: !!lat && !!lon,
     })
 
     return {
