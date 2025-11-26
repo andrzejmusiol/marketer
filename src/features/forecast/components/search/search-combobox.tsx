@@ -68,7 +68,7 @@ export const SearchCombobox: FC<Props> = ({ onCitySelect }) => {
                 <Command shouldFilter={false}>
                     <CommandList>
                         {isLoading ? <Loading /> : cities.length === 0 ? (
-                            <CommandEmpty>No cities found.</CommandEmpty>
+                            <CommandEmpty>Search for cities...</CommandEmpty>
                         ) : (
                             <CommandGroup>
                                 {cities.map((city) => (

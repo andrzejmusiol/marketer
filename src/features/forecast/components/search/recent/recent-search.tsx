@@ -23,7 +23,7 @@ export const RecentSearch: FC<Props> = ({ city, handleSelect }) => {
                     {city.name}
                 </div>
                 <div>
-                    {forecastData?.main.temp}°C
+                    {forecastData?.main.temp.toFixed(1)}°C
                 </div>
             </div>
             <div className="text-right">
