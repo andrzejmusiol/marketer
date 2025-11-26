@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { forescast } from "@/features/forescast/api/forecast"
 
-export const useForescast = (city: string) => {
+export const useForescast = (city: string | null) => {
     const {
         data: forescastData,
         isLoading: forescastLoading,

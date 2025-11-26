@@ -1,25 +1,18 @@
-import { useForescast } from "@/features/forescast/hooks/use-forescast";
 import { LocationWithTemperature } from "@/features/forescast/components/location-with-temperature";
-import { useCity } from "@/features/forescast/hooks/use-city";
+import { SearchCombobox } from "@/features/forescast/components/search-combobox";
+import { useState } from "react";
+import { Geocoding } from "@/shared/types/types";
 
 const ForescastPage = () => {
-    const { forescastData, forescastLoading, forescastError } = useForescast('Warsaw');
-    const { cities, isLoading, error } = useCity('War');
+    const [selectedCity, setSelectedCity] = useState<string | null>(null);
 
-    console.warn(cities);
-
-    if (forescastLoading) {
-        return <div>Loading...</div>
+    const handleCitySelect = (city: Geocoding) => {
+        setSelectedCity(city.name)
     }
-
-    if (forescastError) {
-        return <div>Error: {forescastError.message}</div>
-    }
-
-    if (!forescastData) { return <div>No data</div> }
 
     return <div>
-        <LocationWithTemperature temp={forescastData.main.temp} locationName={forescastData.name} />
+        <SearchCombobox onCitySelect={handleCitySelect} />
+        <LocationWithTemperature city={selectedCity} />
     </div>
 }
 

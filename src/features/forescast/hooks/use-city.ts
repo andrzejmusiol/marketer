@@ -12,8 +12,18 @@ export const useCity = (query: string, enabled: boolean = true) => {
         enabled: enabled && query.length >= 2,
     })
 
+    const seen = new Set<string>()
+    const uniqueCities = data ? data.filter(city => {
+        const key = `${city.name}-${city.state}-${city.country}`
+        if (seen.has(key)) {
+            return false
+        }
+        seen.add(key)
+        return true
+    }) : []
+
     return {
-        cities: data || [],
+        cities: uniqueCities || [],
         isLoading,
         error,
     }
