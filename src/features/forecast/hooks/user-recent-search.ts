@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Geocoding } from '@/shared/types/types'
-import { generateCityKey } from '@/features/forecast/utils'
-
-const STORAGE_KEY = 'recent-searches'
-const MAX_RECENT_SEARCHES = 5
+import { generateCityKey } from '@/features/forecast/utils/utils'
+import { MAX_RECENT_SEARCHES, STORAGE_KEY } from '@/features/forecast/utils/constants'
 
 export const useRecentSearches = () => {
     const [recentSearches, setRecentSearches] = useState<Geocoding[]>([])
