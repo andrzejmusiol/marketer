@@ -1,35 +1,34 @@
-import { FC } from "react"
-import { useRecentSearches } from "@/features/forecast/hooks/user-recent-search"
-import { Button } from "@/shared/components/ui/button"
 import { Geocoding } from "@/shared/types/types"
-import { generateCityKey } from "../../utils/utils"
+import { FC } from "react"
+import { useForecast } from "@/features/forecast/hooks/use-forecast"
+import { Button } from "@/shared/components/ui/button"
+import { Loading } from "@/shared/components/states/loading"
 
 type Props = {
+    city: Geocoding
     handleSelect: (city: Geocoding) => void
 }
 
-export const RecentSearches: FC<Props> = ({ handleSelect }) => {
-    const { recentSearches, clearRecentSearches } = useRecentSearches()
+export const RecentSearch: FC<Props> = ({ city, handleSelect }) => {
+    const { forecastData, forecastLoading, forecastError } = useForecast(city?.lat || 0, city?.lon || 0);
 
-    if (recentSearches.length === 0) {
-        return null
-    }
+    if (!forecastData) { return null }
+    if (forecastLoading) { return <Loading /> }
+    if (forecastError) { return <div>Error: {forecastError.message}</div> }
 
     return (
-        <div className="flex items-center gap-2 p-2">
-            <p className="text-xs font-medium">Recent Searches: </p>
-            {recentSearches.map((city) => (
-                <Button className="w-fit text-xs p-2 hover:cursor-pointer hover:opacity-80" variant="secondary" key={generateCityKey(city)} onClick={() => handleSelect(city)}>
-                    <p>{city.name} | {city.state}</p>
-                </Button>
-            ))}
-            <Button
-                onClick={clearRecentSearches}
-                variant="outline"
-                className="text-xs p-2"
-            >
-                Clear
-            </Button>
-        </div>
+        <Button className="w-full flex items-center justify-between hover:cursor-pointer hover:opacity-80 p-10" variant="secondary" onClick={() => handleSelect(city)}>
+            <div className="text-left">
+                <div>
+                    {city.name}
+                </div>
+                <div>
+                    {forecastData?.main.temp}°C
+                </div>
+            </div>
+            <div className="text-right">
+                <img className="w-16" src={`https://openweathermap.org/img/wn/${forecastData.weather[0].icon}@2x.png`} alt={forecastData.weather[0].description} />
+            </div>
+        </Button>
     )
 }
