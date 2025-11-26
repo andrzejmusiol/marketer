@@ -33,5 +33,8 @@ Front-end task for Marketer.com
 
 - [Bulletproof-react](https://github.com/alan2207/bulletproof-react)
 
+## Commiting mathodology
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification)
+
 ## API
-- Open Wheather Map 2.5
+- Open Weather Map 2.5

@@ -3,7 +3,7 @@ import { useRecentSearches } from "@/features/forecast/hooks/user-recent-search"
 import { Button } from "@/shared/components/ui/button"
 import { Geocoding } from "@/shared/types/types"
 import { generateCityKey } from "@/features/forecast/utils/utils"
-import { RecentSearch } from "@/features/forecast/components/search/recent-search"
+import { RecentSearch } from "@/features/forecast/components/search/recent/recent-search"
 
 type Props = {
     handleSelect: (city: Geocoding) => void
