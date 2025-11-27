@@ -10,7 +10,6 @@ type Props = {
 }
 
 export const ForecastChart: FC<Props> = ({ forecast }) => {
-
     const chartData = forecast.map((item) => ({
         time: chartDataFromatter(item.dt),
         temp: item.main.temp,

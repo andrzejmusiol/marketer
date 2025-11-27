@@ -5,7 +5,7 @@ import { WeatherDetail } from "./weather-detail"
 
 type Props = {
     weather: WeatherType
-    geocoding?: Geocoding
+    geocoding: Geocoding | null
 }
 
 export const Weather: FC<Props> = ({ weather, geocoding }) =>
