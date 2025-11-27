@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ForecastPage } from "@/features/forecast/views";
-import WeatherPage from "@/features/weather/views";
+import { ForecastView } from "@/features/forecast/views";
+import { WeatherView } from "@/features/weather/views";
 import Aurora from "@/shared/components/Aurora";
 import { getAuroraColorStops } from "@/shared/configs/colors";
 import { Geocoding } from "@/shared/types/types";
@@ -14,10 +14,10 @@ export const WeatherForecastPage = () => {
         <div className="h-screen w-screen flex flex-col overflow-hidden relative bg-primary">
             <div className="z-10 flex flex-col h-full overflow-y-auto">
                 <div className="flex-shrink-0 md:flex-1 min-h-0">
-                    <WeatherPage geocoding={selectedGeocoding} handleGeocodingSelect={handleGeocodingSelect} />
+                    <WeatherView geocoding={selectedGeocoding} handleGeocodingSelect={handleGeocodingSelect} />
                 </div>
                 <div className="flex-shrink-0 md:flex-1 min-h-0">
-                    <ForecastPage geocoding={selectedGeocoding} />
+                    <ForecastView geocoding={selectedGeocoding} />
                 </div>
             </div>
             <div className="absolute top-0 left-0 w-full h-full z-0">

@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { ForecastList } from "@/shared/types/types"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
-import { AreaChart, CartesianGrid, XAxis, Area, LabelList, LabelProps } from "recharts"
+import { AreaChart, CartesianGrid, XAxis, Area, LabelList } from "recharts"
 import { chartDataFromatter } from "@/features/forecast/utils"
 import { COLORS } from "@/shared/configs/colors"
 
@@ -21,33 +21,12 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
         },
     } satisfies ChartConfig
 
-    const renderLabel = (props: LabelProps) => {
-        const { x, y, value, index } = props
-
-        if (index === 0 || index === chartData.length - 1) {
-            return null
-        }
-
-        return (
-            <text
-                x={x}
-                y={y}
-                fill="rgba(255, 255, 255, 0.5)"
-                fontSize="48px"
-                textAnchor="middle"
-                dy={-20}
-            >
-                {`${Math.round(value as number)}°`}
-            </text>
-        )
-    }
-
     return (
         <ChartContainer config={chartConfig} className="h-full w-full ">
             <AreaChart
                 accessibilityLayer
                 data={chartData}
-                margin={{ top: 100, bottom: 50 }}
+                margin={{ top: 100, bottom: 10, left: 40, right: 40 }}
             >
                 <defs>
                     <linearGradient id="fillTemp" x1="0" y1="0" x2="0" y2="1">
@@ -73,12 +52,7 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
                     tickLine={false}
                     axisLine={false}
                     tickMargin={8}
-                    tickFormatter={(value: string, index: number) => {
-                        if (index === 0 || index === chartData.length - 1) {
-                            return ''
-                        }
-                        return value
-                    }}
+                    padding={{ left: 20, right: 20 }}
                 />
                 <Area
                     dataKey="temp"
@@ -86,8 +60,18 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
                     fill="url(#fillTemp)"
                     fillOpacity={0.4}
                     stroke={COLORS.chart.gradient.start}
+                    activeDot={{ r: 4 }}
                 >
-                    <LabelList dataKey="temp" content={renderLabel} />
+                    <LabelList
+                        dataKey="temp"
+                        fontSize="36px"
+                        fontWeight={300}
+                        fontFamily="Poppins"
+                        fill="rgba(255, 255, 255, 0.5)"
+                        formatter={(value: number) => `${Math.round(value)}°`}
+                        position="top"
+                        offset={25}
+                    />
                 </Area>
             </AreaChart>
         </ChartContainer>

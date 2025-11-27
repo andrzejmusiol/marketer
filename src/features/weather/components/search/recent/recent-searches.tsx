@@ -11,7 +11,7 @@ type Props = {
 
 export const RecentSearches: FC<Props> = ({ onGeocodingSelect }) => {
     const { recentSearches, clearRecentSearches } = useRecentSearches()
-    console.warn({ recentSearches })
+
     if (!recentSearches.length) return null
 
     return (

@@ -13,7 +13,7 @@ type Props = {
     handleGeocodingSelect: (geocoding: Geocoding) => void
 }
 
-const WeatherPage: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
+export const WeatherView: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
     const { lat, lon } = useGeolocation()
     const { weather, isWeatherLoading, weatherError } = useWeather(geocoding?.lat ? geocoding.lat : lat || 0, geocoding?.lon ? geocoding.lon : lon || 0);
 
@@ -32,7 +32,4 @@ const WeatherPage: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
         </main>
     </div>
 }
-
-
-export default WeatherPage;
 
