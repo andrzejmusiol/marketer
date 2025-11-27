@@ -17,7 +17,7 @@ export const RecentSearch: FC<Props> = ({ geocoding, onGeocodingSelect }) => {
     if (weatherError) { return <div>Error: {weatherError.message}</div> }
 
     return (
-        <SpotlightCard className="bg-dark-primary" spotlightColor="rgba(219, 187, 162, 0.2)">
+        <SpotlightCard className="bg-white/1" spotlightColor="rgba(219, 187, 162, 0.2)">
             <div className="cursor-pointer" onClick={() => onGeocodingSelect(geocoding)}>
                 <div className="text-left text-white">
                     <div className="flex items-center justify-between gap-2">

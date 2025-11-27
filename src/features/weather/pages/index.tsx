@@ -11,23 +11,21 @@ type Props = {
     handleGeocodingSelect: (geocoding: Geocoding) => void
 }
 
-const WeatherPage: FC<Props> = ({ selectedGeocoding, handleGeocodingSelect }) => {
-    return (
-        <>
-            <nav className="flex items-center justify-end p-4 flex-shrink-0">
-                <SearchCombobox onGeocodingSelect={handleGeocodingSelect} />
-            </nav>
-            <main className="grid grid-cols-1 md:grid-cols-3 justify-center items-center flex-1 min-h-0 p-10">
-                <div className="col-span-2">
-                    {selectedGeocoding ? <GeocodingWeather geocoding={selectedGeocoding} /> : <GeolocationWeather />}
-                </div>
-                <div className="col-span-1">
-                    <RecentSearches onGeocodingSelect={handleGeocodingSelect} />
-                </div>
-            </main>
-        </>
-    )
-}
+const WeatherPage: FC<Props> = ({ selectedGeocoding, handleGeocodingSelect }) =>
+    <div className=" p-10">
+        <nav className="flex items-center justify-end p-4 flex-shrink-0">
+            <SearchCombobox onGeocodingSelect={handleGeocodingSelect} />
+        </nav>
+        <main className="grid grid-cols-1 md:grid-cols-3 justify-center items-center flex-1 min-h-0">
+            <div className="col-span-2">
+                {selectedGeocoding ? <GeocodingWeather geocoding={selectedGeocoding} /> : <GeolocationWeather />}
+            </div>
+            <div className="col-span-1">
+                <RecentSearches onGeocodingSelect={handleGeocodingSelect} />
+            </div>
+        </main>
+    </div>
+
 
 export default WeatherPage;
 

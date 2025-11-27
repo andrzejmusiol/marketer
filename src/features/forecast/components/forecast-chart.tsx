@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { ForecastList } from "@/shared/types/types"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
-import { AreaChart, CartesianGrid, XAxis, Area } from "recharts"
+import { AreaChart, CartesianGrid, XAxis, Area, LabelList } from "recharts"
 import { chartDataFromatter } from "@/features/forecast/utils"
 import { COLORS } from "@/shared/configs/colors"
 
@@ -27,10 +27,7 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
             <AreaChart
                 accessibilityLayer
                 data={chartData}
-                margin={{
-                    left: 12,
-                    right: 12,
-                }}
+
             >
                 <defs>
                     <linearGradient id="fillTemp" x1="0" y1="0" x2="0" y2="1">
@@ -64,7 +61,22 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
                     fill="url(#fillTemp)"
                     fillOpacity={0.4}
                     stroke={COLORS.chart.gradient.start}
-                />
+                >
+                    <LabelList
+                        dataKey="temp"
+                        position="bottom"
+                        formatter={(value: number) => `${Math.round(value)}°`}
+                        className="text-white/10"
+                        style={{ fontSize: '48px' }}
+                    />
+                    <LabelList
+                        dataKey="time"
+                        position="top"
+
+                        className="text-white/10"
+                        style={{ fontSize: '16px' }}
+                    />
+                </Area>
             </AreaChart>
         </ChartContainer>
     )

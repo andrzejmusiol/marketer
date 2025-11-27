@@ -53,7 +53,7 @@ export const SearchCombobox: FC<Props> = ({ onGeocodingSelect }) => {
                 <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
                     <Input
-                        className="pl-10"
+                        className="pl-10 bg-white/1 text-white rounded-full border-white/10"
                         placeholder="Search city..."
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
@@ -61,11 +61,11 @@ export const SearchCombobox: FC<Props> = ({ onGeocodingSelect }) => {
                 </div>
             </PopoverTrigger>
             <PopoverContent
-                className="w-[var(--radix-popover-trigger-width)] p-0"
+                className="w-[var(--radix-popover-trigger-width)] p-0 bg-white/1 border-white/10"
                 align="start"
                 onOpenAutoFocus={(e) => e.preventDefault()}
             >
-                <Command shouldFilter={false}>
+                <Command shouldFilter={false} className="text-white bg-white/1 border-white/10">
                     <CommandList>
                         {isLoading ? <Loading /> : geocoding.length === 0 ? (
                             <CommandEmpty>Search for cities...</CommandEmpty>
@@ -76,10 +76,11 @@ export const SearchCombobox: FC<Props> = ({ onGeocodingSelect }) => {
                                         key={geocodingKeyFactory(geo)}
                                         value={`${geo.name}-${geo.state}-${geo.country}`}
                                         onSelect={() => handleSelect(geo)}
+                                        className="hover:bg-white/5"
                                     >
                                         <div className="flex flex-col">
-                                            <span>{geo.name}</span>
-                                            <span className="text-xs text-muted-foreground">
+                                            <span className="text-white">{geo.name}</span>
+                                            <span className="text-xs text-white/50">
                                                 {geo.state && `${geo.state}, `}{geo.country}
                                             </span>
                                         </div>
