@@ -4,7 +4,6 @@ import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "
 import { AreaChart, CartesianGrid, XAxis, Area, LabelList, LabelProps } from "recharts"
 import { chartDataFromatter } from "@/features/forecast/utils"
 import { COLORS } from "@/shared/configs/colors"
-import { Title } from "@radix-ui/react-dialog"
 
 type Props = {
     forecast: ForecastList
