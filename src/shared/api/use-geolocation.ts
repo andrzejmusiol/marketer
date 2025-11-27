@@ -31,8 +31,18 @@ export const useGeolocation = () => {
             return
         }
 
-        const watchId = navigator.geolocation.getCurrentPosition(
+        const options: PositionOptions = {
+            enableHighAccuracy: false,
+            timeout: 10000,
+            maximumAge: 300000,
+        }
+
+        let isMounted = true
+
+        navigator.geolocation.getCurrentPosition(
             (position) => {
+                if (!isMounted) return
+
                 setGeolocation({
                     lat: position.coords.latitude,
                     lon: position.coords.longitude,
@@ -41,16 +51,19 @@ export const useGeolocation = () => {
                 })
             },
             (error) => {
+                if (!isMounted) return
+
                 setGeolocation(prev => ({
                     ...prev,
                     isLoading: false,
                     error,
                 }))
             },
+            options
         )
 
         return () => {
-            if (watchId !== undefined) navigator.geolocation.clearWatch(watchId)
+            isMounted = false
         }
     }, [])
 

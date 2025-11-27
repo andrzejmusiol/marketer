@@ -1,13 +1,11 @@
 import { FC } from "react";
-import { SearchCombobox } from "@/features/weather/components/search/search-combobox";
 import { Geocoding } from "@/shared/types/types";
-import { RecentSearches } from "@/features/weather/components/search/recent/recent-searches";
 import { Weather } from "@/features/weather/components/wheater/weather";
 import { useWeather } from "@/features/weather/hooks/use-weather";
 import { useGeolocation } from "@/shared/api/use-geolocation";
-import { NoData } from "@/shared/components/states/no-data";
 import { Loading } from "@/shared/components/states/loading";
 import { Error } from "@/shared/components/states/error";
+import { Search } from "../components/search";
 
 type Props = {
     geocoding: Geocoding | null
@@ -18,7 +16,15 @@ const WeatherPage: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
     const { lat, lon } = useGeolocation()
     const { weather, isWeatherLoading, weatherError } = useWeather(geocoding?.lat ? geocoding.lat : lat || 0, geocoding?.lon ? geocoding.lon : lon || 0);
 
-    if (!weather) { return <NoData /> }
+    if (!weather) {
+        return <div className="p-10 flex flex-col items-center justify-center text-center h-full">
+            <h1 className="text-4xl font-light text-white text-center">Search for a location</h1>
+            <p className="text-lg text-white text-center mb-10 opacity-50">or choose from recent searches</p>
+            <main className="w-1/2">
+                <Search handleGeocodingSelect={handleGeocodingSelect} />
+            </main>
+        </div>
+    }
     if (isWeatherLoading) { return <Loading /> }
     if (weatherError) { return <Error message={weatherError.message} /> }
 
@@ -28,8 +34,8 @@ const WeatherPage: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
                 <Weather weather={weather} geocoding={geocoding} />
             </div>
             <div className="col-span-1 h-full space-y-2">
-                <SearchCombobox onGeocodingSelect={handleGeocodingSelect} />
-                <RecentSearches onGeocodingSelect={handleGeocodingSelect} />
+                <Search handleGeocodingSelect={handleGeocodingSelect} />
+
             </div>
         </main>
     </div>
