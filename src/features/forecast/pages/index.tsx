@@ -1,21 +1,17 @@
-import { ForecastChart } from "../components/forecast-chart";
-import { useForecast } from "../hooks/use-forecast";
+import { Error } from "@/shared/components/states/error";
+import { Loading } from "@/shared/components/states/loading";
+import { NoData } from "@/shared/components/states/no-data";
+import { ForecastChart } from "@/features/forecast/components/forecast-chart";
+import { useForecast } from "@/features/forecast/hooks/use-forecast";
 
 export const ForecastPage = () => {
     const { forecast, isForecastLoading, forecastError } = useForecast(51.9384, 15.505);
 
-    if (isForecastLoading) {
-        return <div>Loading...</div>
-    }
+    if (isForecastLoading) return <Loading />
 
-    if (forecastError) {
-        return <div>Error: {forecastError.message}</div>
-    }
+    if (forecastError) return <Error message={forecastError.message} />
 
-    if (!forecast) {
-        return <div>No forecast found</div>
-    }
-
+    if (!forecast) return <NoData />
 
     return <ForecastChart forecast={forecast} />
 }

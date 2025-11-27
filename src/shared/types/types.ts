@@ -89,10 +89,12 @@ export type Forecast = {
     wind: Wind
 }
 
+export type ForecastList = Array<Forecast>
+
 export type HourlyForecast = {
     city: City
     cnt: number
     cod: string
-    list: Array<Forecast>
+    list: ForecastList
     message: number
 }

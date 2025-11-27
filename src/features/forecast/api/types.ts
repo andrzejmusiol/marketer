@@ -1,3 +1,3 @@
 import { HourlyForecast } from "@/shared/types/types"
 
-export type HourlyForecastResponse = HourlyForecast
+export type HourlyForecastResponse = Pick<HourlyForecast, "list">

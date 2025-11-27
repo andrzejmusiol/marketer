@@ -12,8 +12,10 @@ export const useForecast = (lat: number, lon: number) => {
         enabled: !!lat && !!lon,
     })
 
+    const forecastData = data?.list.slice(0, 10)
+
     return {
-        forecast: data,
+        forecast: forecastData,
         isForecastLoading: isLoading,
         forecastError: error,
     }

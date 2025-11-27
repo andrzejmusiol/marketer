@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Geocoding } from "@/shared/types/types";
 import { GeolocationWeather } from "@/features/weather/components/wheater/geolocaton-weather";
 import { RecentSearches } from "@/features/weather/components/search/recent/recent-searches";
+import { ForecastPage } from "@/features/forecast/pages";
 
 const WeatherPage = () => {
     const [selectedCity, setSelectedCity] = useState<Geocoding | null>(null);
@@ -19,6 +20,7 @@ const WeatherPage = () => {
             <main className="flex justify-center items-center flex-1 min-h-0">
                 {selectedCity ? <GeocodingWeather geocoding={selectedCity} /> : <GeolocationWeather />}
             </main>
+            <ForecastPage />
             <div className="flex items-center justify-center p-4 flex-shrink-0">
                 <RecentSearches handleSelect={handleGeocodingSelect} />
             </div>
