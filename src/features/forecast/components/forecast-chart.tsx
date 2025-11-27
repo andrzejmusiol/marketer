@@ -23,11 +23,11 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
     } satisfies ChartConfig
 
     return (
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig} className="h-full w-full">
             <AreaChart
                 accessibilityLayer
                 data={chartData}
-
+                margin={{ top: 50, bottom: 50 }}
             >
                 <defs>
                     <linearGradient id="fillTemp" x1="0" y1="0" x2="0" y2="1">
@@ -64,18 +64,12 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
                 >
                     <LabelList
                         dataKey="temp"
-                        position="bottom"
+                        position="top"
                         formatter={(value: number) => `${Math.round(value)}°`}
                         className="text-white/10"
                         style={{ fontSize: '48px' }}
                     />
-                    <LabelList
-                        dataKey="time"
-                        position="top"
 
-                        className="text-white/10"
-                        style={{ fontSize: '16px' }}
-                    />
                 </Area>
             </AreaChart>
         </ChartContainer>

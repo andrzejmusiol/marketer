@@ -12,7 +12,7 @@ type Props = {
 }
 
 const WeatherPage: FC<Props> = ({ selectedGeocoding, handleGeocodingSelect }) =>
-    <div className=" p-10">
+    <div className="p-10">
         <nav className="flex items-center justify-end p-4 flex-shrink-0">
             <SearchCombobox onGeocodingSelect={handleGeocodingSelect} />
         </nav>

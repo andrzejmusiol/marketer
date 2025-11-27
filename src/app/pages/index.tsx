@@ -12,11 +12,15 @@ export const WeatherForecastPage = () => {
 
     return (
         <div className="h-screen w-screen flex flex-col overflow-hidden relative bg-[#0C1518]">
-            <div className="z-10">
-                <WeatherPage selectedGeocoding={selectedGeocoding} handleGeocodingSelect={handleGeocodingSelect} />
-                <ForecastPage geocoding={selectedGeocoding} />
+            <div className="z-1  flex flex-col h-full">
+                <div className="flex-1 min-h-0">
+                    <WeatherPage selectedGeocoding={selectedGeocoding} handleGeocodingSelect={handleGeocodingSelect} />
+                </div>
+                <div className="flex-1 min-h-0">
+                    <ForecastPage geocoding={selectedGeocoding} />
+                </div>
             </div>
-            <div className="absolute top-0 left-0 w-full h-full -z-0">
+            <div className="absolute top-0 left-0 w-full h-full z-0">
                 <Aurora
                     colorStops={getAuroraColorStops()}
                     blend={0.5}
