@@ -2,13 +2,11 @@ import { FC } from "react"
 import { ForecastList } from "@/shared/types/types"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
 import { AreaChart, CartesianGrid, XAxis, Area } from "recharts"
-import { format } from "date-fns"
+import { chartDataFromatter } from "@/features/forecast/utils"
 
 type Props = {
     forecast: ForecastList
 }
-
-const chartDataFromatter = (date: number) => format(new Date(date * 1000), 'dd.MM - HH:mm')
 
 export const ForecastChart: FC<Props> = ({ forecast }) => {
 
