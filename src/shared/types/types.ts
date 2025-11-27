@@ -3,7 +3,7 @@ export type Coord = {
     lat: number
 }
 
-export type Weather = {
+export type WeatherDetails = {
     id: number
     main: string
     description: string
@@ -39,9 +39,9 @@ export type Location = {
     sunset: number
 }
 
-export type Forecast = {
+export type Weather = {
     coord: Coord
-    weather: Array<Weather>
+    weather: Array<WeatherDetails>
     base: string
     main: MainForecast
     visibility: number

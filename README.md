@@ -36,5 +36,7 @@ Front-end task for Marketer.com
 ## Commiting mathodology
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification)
 
-## API
+## APIs
 - Open Weather Map 2.5
+    - [Current weather data API](https://openweathermap.org/current)
+    - [Geocoding API](https://openweathermap.org/api/geocoding-api)

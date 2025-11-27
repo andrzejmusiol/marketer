@@ -13,38 +13,38 @@ import {
 import { Input } from "@/shared/components/ui/input"
 import { FC } from "react"
 import { Geocoding } from "@/shared/types/types"
-import { useCity } from "@/features/forecast/hooks/use-city"
+import { useGeocoding } from "@/features/weather/hooks/use-geocoding"
 import { useDebounce } from "@/shared/hooks/use-debounce"
 import { PopoverTrigger } from "@radix-ui/react-popover"
-import { useRecentSearches } from "@/features/forecast/hooks/user-recent-search"
-import { generateCityKey } from "@/features/forecast/utils/utils"
+import { useRecentSearches } from "@/features/weather/hooks/user-recent-search"
+import { geocodingKeyFactory } from "@/features/weather/utils/utils"
 import { Loading } from "@/shared/components/states/loading"
 import { Error } from "@/shared/components/states/error"
 import { Search } from "lucide-react"
 
 type Props = {
-    onCitySelect?: (city: Geocoding) => void
+    onGeocodingSelect?: (geocoding: Geocoding) => void
 }
 
-export const SearchCombobox: FC<Props> = ({ onCitySelect }) => {
+export const SearchCombobox: FC<Props> = ({ onGeocodingSelect }) => {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
     const debouncedValue = useDebounce(value, 500)
-    const { cities, isLoading, error } = useCity(debouncedValue);
+    const { geocoding, isLoading, error } = useGeocoding(debouncedValue);
     const { addRecentSearch } = useRecentSearches()
 
-    useEffect(() => debouncedValue.length >= 2 && (cities.length > 0 || isLoading) ? setOpen(true) : setOpen(false)
-        , [debouncedValue, cities.length, isLoading])
+    useEffect(() => debouncedValue.length >= 2 && (geocoding.length > 0 || isLoading) ? setOpen(true) : setOpen(false)
+        , [debouncedValue, geocoding.length, isLoading])
 
     if (error) {
         return <Error message={error.message} />
     }
 
-    const handleSelect = (city: Geocoding) => {
-        setValue(city.name)
+    const handleSelect = (geocoding: Geocoding) => {
+        setValue(geocoding.name)
         setOpen(false)
-        addRecentSearch(city)
-        onCitySelect?.(city)
+        addRecentSearch(geocoding)
+        onGeocodingSelect?.(geocoding)
     }
 
     return (
@@ -67,20 +67,20 @@ export const SearchCombobox: FC<Props> = ({ onCitySelect }) => {
             >
                 <Command shouldFilter={false}>
                     <CommandList>
-                        {isLoading ? <Loading /> : cities.length === 0 ? (
+                        {isLoading ? <Loading /> : geocoding.length === 0 ? (
                             <CommandEmpty>Search for cities...</CommandEmpty>
                         ) : (
                             <CommandGroup>
-                                {cities.map((city) => (
+                                {geocoding.map((geo) => (
                                     <CommandItem
-                                        key={generateCityKey(city)}
-                                        value={`${city.name}-${city.state}-${city.country}`}
-                                        onSelect={() => handleSelect(city)}
+                                        key={geocodingKeyFactory(geo)}
+                                        value={`${geo.name}-${geo.state}-${geo.country}`}
+                                        onSelect={() => handleSelect(geo)}
                                     >
                                         <div className="flex flex-col">
-                                            <span>{city.name}</span>
+                                            <span>{geo.name}</span>
                                             <span className="text-xs text-muted-foreground">
-                                                {city.state && `${city.state}, `}{city.country}
+                                                {geo.state && `${geo.state}, `}{geo.country}
                                             </span>
                                         </div>
                                     </CommandItem>

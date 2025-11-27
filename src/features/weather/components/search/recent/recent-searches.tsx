@@ -1,12 +1,12 @@
 import { FC } from "react"
-import { useRecentSearches } from "@/features/forecast/hooks/user-recent-search"
+import { useRecentSearches } from "@/features/weather/hooks/user-recent-search"
 import { Button } from "@/shared/components/ui/button"
 import { Geocoding } from "@/shared/types/types"
-import { generateCityKey } from "@/features/forecast/utils/utils"
-import { RecentSearch } from "@/features/forecast/components/search/recent/recent-search"
+import { geocodingKeyFactory } from "@/features/weather/utils/utils"
+import { RecentSearch } from "@/features/weather/components/search/recent/recent-search"
 
 type Props = {
-    handleSelect: (city: Geocoding) => void
+    handleSelect: (geocoding: Geocoding) => void
 }
 
 export const RecentSearches: FC<Props> = ({ handleSelect }) => {
@@ -21,8 +21,8 @@ export const RecentSearches: FC<Props> = ({ handleSelect }) => {
                 </Button>
             </div>
             {recentSearches.length > 0 && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                {recentSearches.map((city) => (
-                    <RecentSearch key={generateCityKey(city)} city={city} handleSelect={handleSelect} />
+                {recentSearches.map((geocoding) => (
+                    <RecentSearch key={geocodingKeyFactory(geocoding)} geocoding={geocoding} handleSelect={handleSelect} />
                 ))}
             </div>
             }

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Geocoding } from '@/shared/types/types'
-import { generateCityKey } from '@/features/forecast/utils/utils'
-import { MAX_RECENT_SEARCHES, STORAGE_KEY } from '@/features/forecast/utils/constants'
+import { geocodingKeyFactory } from '@/features/weather/utils/utils'
+import { MAX_RECENT_SEARCHES, STORAGE_KEY } from '@/features/weather/utils/constants'
 
 export const useRecentSearches = () => {
     const [recentSearches, setRecentSearches] = useState<Geocoding[]>([])
@@ -19,23 +19,23 @@ export const useRecentSearches = () => {
         }
     }, [])
 
-    const addRecentSearch = useCallback((city: Geocoding) => {
+    const addRecentSearch = useCallback((geocoding: Geocoding) => {
         setRecentSearches(prev => {
-            const cityKey = generateCityKey(city)
+            const geocodingKey = geocodingKeyFactory(geocoding)
 
             const filtered = prev.filter(
-                city => `${city.name}-${city.lat}-${city.lon}` !== cityKey
+                geo => geocodingKeyFactory(geo) !== geocodingKey
             )
 
-            const updated = [city, ...filtered].slice(0, MAX_RECENT_SEARCHES)
+            const recentSearches = [geocoding, ...filtered].slice(0, MAX_RECENT_SEARCHES)
 
             try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(recentSearches))
             } catch (error) {
                 console.error('Failed to save recent searches:', error)
             }
 
-            return updated
+            return recentSearches
         })
     }, [])
 
