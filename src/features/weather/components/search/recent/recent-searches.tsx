@@ -18,7 +18,7 @@ export const RecentSearches: FC<Props> = ({ onGeocodingSelect }) => {
         <div className="w-full">
             <div className="flex items-center justify-between my-2">
                 <p className="text-xs text-white">Recent searched:</p>
-                <Button onClick={clearRecentSearches} variant="ghost" className="text-xs py-0.5 text-white">
+                <Button onClick={clearRecentSearches} variant="ghost" className="text-xs py-0.5 text-white hover:bg-transparent hover:text-white/50 cursor-pointer">
                     Clear
                 </Button>
             </div>

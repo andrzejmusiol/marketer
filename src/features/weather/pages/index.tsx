@@ -28,7 +28,6 @@ const WeatherPage: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
             </div>
             <div className="col-span-1 h-full space-y-2">
                 <Search handleGeocodingSelect={handleGeocodingSelect} />
-
             </div>
         </main>
     </div>

@@ -12,7 +12,10 @@ export const Weather: FC<Props> = ({ weather, geocoding }) =>
     <div className="flex flex-col justify-center h-full w-full text-white">
         <div className="flex items-center justify-start gap-3">
             <MapPin className="w-6 h-6 text-white font-light" />
-            {weather.name} {geocoding && <p>{geocoding.state} {geocoding.country}</p>}
+            <div className="flex gap-2">
+                <p>{weather.name}</p> {geocoding && <p>{geocoding.state} {geocoding.country}</p>}
+            </div>
+
         </div>
 
         <div className="flex items-center justify-start gap-4">

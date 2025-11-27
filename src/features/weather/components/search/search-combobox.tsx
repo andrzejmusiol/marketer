@@ -65,7 +65,7 @@ export const SearchCombobox: FC<Props> = ({ onGeocodingSelect }) => {
                 align="start"
                 onOpenAutoFocus={(e) => e.preventDefault()}
             >
-                <Command shouldFilter={false} className="text-white bg-white/1 border-white/10">
+                <Command shouldFilter={false} className="text-white bg-black/80 border-white/10">
                     <CommandList>
                         {isLoading ? <Loading /> : geocoding.length === 0 ? (
                             <CommandEmpty>Search for cities...</CommandEmpty>
@@ -76,7 +76,7 @@ export const SearchCombobox: FC<Props> = ({ onGeocodingSelect }) => {
                                         key={geocodingKeyFactory(geo)}
                                         value={`${geo.name}-${geo.state}-${geo.country}`}
                                         onSelect={() => handleSelect(geo)}
-                                        className="hover:bg-white/5"
+                                        className="data-[selected=true]:bg-black/60 my-1 cursor-pointer"
                                     >
                                         <div className="flex flex-col">
                                             <span className="text-white">{geo.name}</span>
