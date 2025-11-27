@@ -25,5 +25,5 @@ export const Weather: FC<Props> = ({ weather, geocoding }) =>
         </div>
         <h3 className="text-2xl">Feels like: {weather.main.feels_like.toFixed(1)}°C</h3>
 
-        <p className="capitalize opacity-50 text-[8vw]">{weather.weather[0].description}</p>
+        <p className="capitalize opacity-50 text-[7vw]">{weather.weather[0].description}</p>
     </div>

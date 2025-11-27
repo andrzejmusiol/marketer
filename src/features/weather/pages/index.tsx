@@ -5,7 +5,8 @@ import { useWeather } from "@/features/weather/hooks/use-weather";
 import { useGeolocation } from "@/shared/api/use-geolocation";
 import { Loading } from "@/shared/components/states/loading";
 import { Error } from "@/shared/components/states/error";
-import { Search } from "../components/search";
+import { Search } from "@/features/weather/components/search";
+import { Welcome } from "@/features/weather/components/welcome";
 
 type Props = {
     geocoding: Geocoding | null
@@ -16,15 +17,7 @@ const WeatherPage: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
     const { lat, lon } = useGeolocation()
     const { weather, isWeatherLoading, weatherError } = useWeather(geocoding?.lat ? geocoding.lat : lat || 0, geocoding?.lon ? geocoding.lon : lon || 0);
 
-    if (!weather) {
-        return <div className="p-10 flex flex-col items-center justify-center text-center h-full">
-            <h1 className="text-4xl font-light text-white text-center">Search for a location</h1>
-            <p className="text-lg text-white text-center mb-10 opacity-50">or choose from recent searches</p>
-            <main className="w-1/2">
-                <Search handleGeocodingSelect={handleGeocodingSelect} />
-            </main>
-        </div>
-    }
+    if (!weather) { return <Welcome handleGeocodingSelect={handleGeocodingSelect} /> }
     if (isWeatherLoading) { return <Loading /> }
     if (weatherError) { return <Error message={weatherError.message} /> }
 

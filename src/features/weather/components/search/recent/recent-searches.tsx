@@ -12,6 +12,8 @@ type Props = {
 export const RecentSearches: FC<Props> = ({ onGeocodingSelect }) => {
     const { recentSearches, clearRecentSearches } = useRecentSearches()
 
+    if (!recentSearches.length) return null
+
     return (
         <div className="w-full">
             <div className="flex items-center justify-between my-2">
@@ -20,12 +22,11 @@ export const RecentSearches: FC<Props> = ({ onGeocodingSelect }) => {
                     Clear
                 </Button>
             </div>
-            {recentSearches.length > 0 && <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {recentSearches.map((geocoding) => (
                     <RecentSearch key={geocodingKeyFactory(geocoding)} geocoding={geocoding} onGeocodingSelect={onGeocodingSelect} />
                 ))}
             </div>
-            }
 
         </div>
     )

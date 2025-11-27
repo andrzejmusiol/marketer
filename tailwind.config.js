@@ -11,6 +11,9 @@ export default {
             colors: {
                 'bg-dark-primary': COLORS.background.primary,
             },
+            fontFamily: {
+                sans: ['Poppins', 'sans-serif'],
+            },
         },
     },
 }
