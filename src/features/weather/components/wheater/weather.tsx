@@ -1,22 +1,38 @@
 import { Weather as WeatherType, Geocoding } from "@/shared/types/types"
 import { FC } from "react"
-import { imageUrlFactory } from "@/features/weather/utils/utils"
+import { MapPin, Sunrise, Sunset } from "lucide-react"
+import { WeatherDetail } from "./weather-detail"
+import { format } from "date-fns"
 
 type Props = {
     weather: WeatherType
-    geocoding?: Geocoding
+    geocoding: Geocoding | null
 }
 
-export const Weather: FC<Props> = ({ weather, geocoding }) => {
-    const iconUrl = imageUrlFactory(weather.weather[0].icon)
+export const Weather: FC<Props> = ({ weather, geocoding }) =>
+    <div className="flex flex-col justify-center h-full w-full text-white">
+        <div className="flex items-center justify-start gap-3">
+            <MapPin className="w-6 h-6 text-white font-light" />
+            <div className="flex item-center gap-2">
+                <p>{weather.name}</p> {geocoding && <p>{geocoding.state} {geocoding.country}</p>}
+                <Sunrise className="w-6 h-6" />{format(weather.sys.sunrise * 1000, "HH:mm")}
+                <Sunset className="w-6 h-6" />{format(weather.sys.sunset * 1000, "HH:mm")}
+            </div>
 
-    return (
-        <div className="flex flex-col items-center justify-center h-full w-full">
-            <img src={iconUrl} alt={weather.weather[0].description} />
-            <p>{weather.name}</p>
-            {geocoding && <p>{geocoding.state} {geocoding.country}</p>}
-            <h2 className="text-6xl font-bold">{weather.main.temp.toFixed(1)}°C</h2>
-            <h3 className="text-2xl font-bold">Feels like: {weather.main.feels_like.toFixed(1)}°C</h3>
         </div>
-    )
-}
+
+        <div className="flex items-center justify-start gap-4">
+            <h2 className="text-[10vw]">{weather.main.temp.toFixed(1)}°C</h2>
+            <div>
+                <WeatherDetail detail={`H: ${weather.main.temp_max.toFixed(1)}°C`} />
+                <WeatherDetail detail={`L: ${weather.main.temp_min.toFixed(1)}°C`} />
+            </div>
+        </div>
+        <div className="flex items-center justify-start gap-4 text-lg">
+            <h3>Feels like: {weather.main.feels_like.toFixed(1)}°C</h3>
+            <h3>Humidity: {weather.main.humidity}%</h3>
+            <h3>Pressure: {weather.main.pressure} hPa</h3>
+        </div>
+
+        <p className="capitalize opacity-50 text-[7vw]">{weather.weather[0].description}</p>
+    </div>
