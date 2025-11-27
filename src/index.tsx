@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '@/globals.css'
 import { QueryProvider } from '@/app/query-provider';
-import ForecastPage from '@/features/forecast/pages/forecast';
+import WeatherPage from '@/features/weather/pages';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <QueryProvider>
-            <ForecastPage />
+            <WeatherPage />
         </QueryProvider>
     </React.StrictMode>
 );

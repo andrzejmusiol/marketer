@@ -8,7 +8,7 @@ type Geolocation = {
 }
 
 export const useGeolocation = () => {
-    const [state, setState] = useState<Geolocation>({
+    const [geolocation, setGeolocation] = useState<Geolocation>({
         lat: null,
         lon: null,
         isLoading: true,
@@ -17,7 +17,7 @@ export const useGeolocation = () => {
 
     useEffect(() => {
         if (!navigator.geolocation) {
-            setState(prev => ({
+            setGeolocation(prev => ({
                 ...prev,
                 isLoading: false,
                 error: {
@@ -31,15 +31,9 @@ export const useGeolocation = () => {
             return
         }
 
-        const options: PositionOptions = {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 300000,
-        }
-
         const watchId = navigator.geolocation.getCurrentPosition(
             (position) => {
-                setState({
+                setGeolocation({
                     lat: position.coords.latitude,
                     lon: position.coords.longitude,
                     isLoading: false,
@@ -47,21 +41,18 @@ export const useGeolocation = () => {
                 })
             },
             (error) => {
-                setState(prev => ({
+                setGeolocation(prev => ({
                     ...prev,
                     isLoading: false,
                     error,
                 }))
             },
-            options
         )
 
         return () => {
-            if (watchId !== undefined) {
-                navigator.geolocation.clearWatch(watchId)
-            }
+            if (watchId !== undefined) navigator.geolocation.clearWatch(watchId)
         }
     }, [])
 
-    return state
+    return geolocation
 }
