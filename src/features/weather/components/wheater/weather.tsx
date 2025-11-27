@@ -10,9 +10,9 @@ type Props = {
 }
 
 export const Weather: FC<Props> = ({ weather, geocoding }) =>
-    <div className="flex flex-col justify-center h-full w-full text-white">
+    <div className="flex flex-col justify-center h-full w-full text-white -space-y-2">
         <div className="flex items-center justify-start gap-3">
-            <MapPin className="w-6 h-6 text-white font-light" />
+            <MapPin className="w-6 h-6 text-white" />
             <div className="flex item-center gap-2">
                 <p>{weather.name}</p> {geocoding && <p>{geocoding.state} {geocoding.country}</p>}
                 <Sunrise className="w-6 h-6" />{format(weather.sys.sunrise * 1000, "HH:mm")}
@@ -22,7 +22,7 @@ export const Weather: FC<Props> = ({ weather, geocoding }) =>
         </div>
 
         <div className="flex items-center justify-start gap-4">
-            <h2 className="text-[10vw]">{weather.main.temp.toFixed(1)}°C</h2>
+            <h2 className="text-[8vw]">{weather.main.temp.toFixed(1)}°C</h2>
             <div>
                 <WeatherDetail detail={`H: ${weather.main.temp_max.toFixed(1)}°C`} />
                 <WeatherDetail detail={`L: ${weather.main.temp_min.toFixed(1)}°C`} />
