@@ -15,8 +15,6 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
         temp: item.main.temp,
     }))
 
-    const isFirstOrLast = (index: number | undefined) => index && (index === 0 || index === chartData.length - 1)
-
     const chartConfig = {
         temp: {
             label: "Temperature",
@@ -26,7 +24,7 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
     const renderLabel = (props: LabelProps) => {
         const { x, y, value, index } = props
 
-        if (isFirstOrLast(index)) {
+        if (index === 0 || index === chartData.length - 1) {
             return null
         }
 
@@ -49,7 +47,7 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
             <AreaChart
                 accessibilityLayer
                 data={chartData}
-                margin={{ top: 50, bottom: 0 }}
+                margin={{ bottom: 20 }}
             >
                 <defs>
                     <linearGradient id="fillTemp" x1="0" y1="0" x2="0" y2="1">
@@ -76,7 +74,7 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
                     axisLine={false}
                     tickMargin={8}
                     tickFormatter={(value: string, index: number) => {
-                        if (isFirstOrLast(index)) {
+                        if (index === 0 || index === chartData.length - 1) {
                             return ''
                         }
                         return value
