@@ -1,8 +1,10 @@
+import { FC } from "react";
 import { GeocodingWeather } from "@/features/weather/components/wheater/geocoding-weather";
 import { SearchCombobox } from "@/features/weather/components/search/search-combobox";
 import { Geocoding } from "@/shared/types/types";
 import { GeolocationWeather } from "@/features/weather/components/wheater/geolocaton-weather";
-import { FC } from "react";
+import { RecentSearches } from "@/features/weather/components/search/recent/recent-searches";
+
 
 type Props = {
     selectedGeocoding: Geocoding | null
@@ -12,12 +14,16 @@ type Props = {
 const WeatherPage: FC<Props> = ({ selectedGeocoding, handleGeocodingSelect }) => {
     return (
         <>
-            <nav className="flex items-center justify-between p-4 flex-shrink-0">
-                <h1 className="text-2xl font-bold">Local Forecast</h1>
+            <nav className="flex items-center justify-end p-4 flex-shrink-0">
                 <SearchCombobox onGeocodingSelect={handleGeocodingSelect} />
             </nav>
-            <main className="flex justify-center items-center flex-1 min-h-0">
-                {selectedGeocoding ? <GeocodingWeather geocoding={selectedGeocoding} /> : <GeolocationWeather />}
+            <main className="grid grid-cols-1 md:grid-cols-3 justify-center items-center flex-1 min-h-0 p-10">
+                <div className="col-span-2">
+                    {selectedGeocoding ? <GeocodingWeather geocoding={selectedGeocoding} /> : <GeolocationWeather />}
+                </div>
+                <div className="col-span-1">
+                    <RecentSearches onGeocodingSelect={handleGeocodingSelect} />
+                </div>
             </main>
         </>
     )
