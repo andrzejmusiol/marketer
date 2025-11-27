@@ -63,3 +63,36 @@ export type Geocoding = {
     country: string
     state?: string
 }
+
+export type City = {
+    id: number
+    name: string
+    coord: Coord
+    country: string
+    population: number
+    timezone: number
+    sunrise: number
+    sunset: number
+}
+
+export type Forecast = {
+    clouds: Clouds
+    dt: number
+    dt_txt: string
+    main: MainForecast
+    pop: number
+    sys: {
+        pod: string
+    }
+    visibility: number
+    weather: Array<WeatherDetails>
+    wind: Wind
+}
+
+export type HourlyForecast = {
+    city: City
+    cnt: number
+    cod: string
+    list: Array<Forecast>
+    message: number
+}
