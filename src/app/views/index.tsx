@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ForecastPage } from "@/features/forecast/pages";
-import WeatherPage from "@/features/weather/pages";
+import { ForecastPage } from "@/features/forecast/views";
+import WeatherPage from "@/features/weather/views";
 import Aurora from "@/shared/components/Aurora";
 import { getAuroraColorStops } from "@/shared/configs/colors";
 import { Geocoding } from "@/shared/types/types";

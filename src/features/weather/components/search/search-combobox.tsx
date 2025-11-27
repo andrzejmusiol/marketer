@@ -36,9 +36,7 @@ export const SearchCombobox: FC<Props> = ({ onGeocodingSelect }) => {
     useEffect(() => debouncedValue.length >= 2 && (geocoding.length > 0 || isLoading) ? setOpen(true) : setOpen(false)
         , [debouncedValue, geocoding.length, isLoading])
 
-    if (error) {
-        return <Error message={error.message} />
-    }
+    if (error) return <Error message={error.message} />
 
     const handleSelect = (geocoding: Geocoding) => {
         setValue(geocoding.name)
