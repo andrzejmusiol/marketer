@@ -7,13 +7,12 @@ import { NoData } from "@/shared/components/states/no-data";
 import { Weather } from "@/features/weather/components/wheater/weather";
 
 type Props = {
-    geocoding: Geocoding | null
+    geocoding: Geocoding
 }
 
 export const GeocodingWeather: FC<Props> = memo(({ geocoding }) => {
     const { weather, isWeatherLoading, weatherError } = useWeather(geocoding?.lat || 0, geocoding?.lon || 0);
 
-    if (!geocoding) { return <div>No city selected</div> }
     if (!weather) { return <NoData /> }
     if (isWeatherLoading) { return <Loading /> }
     if (weatherError) { return <Error message={weatherError.message} /> }

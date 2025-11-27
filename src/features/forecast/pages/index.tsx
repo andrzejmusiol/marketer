@@ -1,17 +1,20 @@
 import { Error } from "@/shared/components/states/error";
 import { Loading } from "@/shared/components/states/loading";
-import { NoData } from "@/shared/components/states/no-data";
 import { ForecastChart } from "@/features/forecast/components/forecast-chart";
 import { useForecast } from "@/features/forecast/hooks/use-forecast";
+import { Geocoding } from "@/shared/types/types";
+import { FC } from "react";
 
-export const ForecastPage = () => {
-    const { forecast, isForecastLoading, forecastError } = useForecast(51.9384, 15.505);
+type Props = {
+    geocoding: Geocoding | null
+}
+
+export const ForecastPage: FC<Props> = ({ geocoding }) => {
+    const { forecast, isForecastLoading, forecastError } = useForecast(geocoding?.lat || 0, geocoding?.lon || 0);
 
     if (isForecastLoading) return <Loading />
-
     if (forecastError) return <Error message={forecastError.message} />
-
-    if (!forecast) return <NoData />
+    if (!forecast) return null
 
     return <ForecastChart forecast={forecast} />
 }
