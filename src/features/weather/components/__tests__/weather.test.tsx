@@ -2,6 +2,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { Weather } from '@/features/weather/components/index'
 import { Weather as WeatherType } from '@/shared/types/types'
+import { useGeocodingStore } from '@/shared/stores/geocoding'
+import { useGeolocation } from '@/shared/api/use-geolocation'
+import { useWeather } from '@/features/weather/hooks/use-weather'
 
 vi.mock('@/shared/stores/geocoding', () => ({
     useGeocodingStore: vi.fn(),
@@ -31,9 +34,6 @@ vi.mock('@/features/weather/components/wheater-details', () => ({
     ),
 }))
 
-import { useGeocodingStore } from '@/shared/stores/geocoding'
-import { useGeolocation } from '@/shared/api/use-geolocation'
-import { useWeather } from '@/features/weather/hooks/use-weather'
 
 const mockUseGeocodingStore = vi.mocked(useGeocodingStore)
 const mockUseGeolocation = vi.mocked(useGeolocation)
