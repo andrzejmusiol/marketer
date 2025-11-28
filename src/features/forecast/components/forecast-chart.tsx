@@ -20,7 +20,7 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
     const chartData = useMemo(() => forecast.slice(0, isMobile ? 4 : 10).map((item) => ({
         time: chartDataFromatter(item.dt),
         temp: item.main.temp,
-    })), [forecast])
+    })), [forecast, isMobile])
 
     const chartConfig = {
         temp: {
