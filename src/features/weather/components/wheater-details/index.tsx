@@ -19,11 +19,11 @@ export const WeatherDetails: FC<Props> = ({ weather, geocoding }) =>
             </div>
         </div>
 
-        <div className="flex items-center justify-start gap-4">
-            <h1 className="md:text-[8vw] sm:text-6xl text-4xl">{weather.main.temp.toFixed(1)}°C</h1>
+        <div className="flex items-center justify-start gap-4 flex-wrap">
+            <h1 className="md:text-[8vw] text-8xl w-full md:w-auto">{weather.main.temp.toFixed(1)}°C</h1>
             <div className="flex flex-row md:flex-col">
-                <p className="text-sm md:text-lg m-2 border border-white/10 bg-white/5 text-center rounded-full px-3 py-1">{`H: ${weather.main.temp_max.toFixed(1)}°C`}</p>
-                <p className="text-sm md:text-lg m-2 border border-white/10 bg-white/5 text-center rounded-full px-3 py-1">{`L: ${weather.main.temp_min.toFixed(1)}°C`}</p>
+                <p className="text-lg m-2 border border-white/10 bg-white/5 text-center rounded-full px-3 py-1">{`H: ${weather.main.temp_max.toFixed(1)}°C`}</p>
+                <p className="text-lg m-2 border border-white/10 bg-white/5 text-center rounded-full px-3 py-1">{`L: ${weather.main.temp_min.toFixed(1)}°C`}</p>
             </div>
         </div>
         <div className="flex items-center justify-start gap-4 text-lg">
