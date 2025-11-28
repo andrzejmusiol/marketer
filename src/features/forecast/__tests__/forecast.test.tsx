@@ -1,9 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { Forecast } from '../components/forecast'
+import { Forecast } from '@/features/forecast/components/forecast'
 import { ForecastList } from '@/shared/types/types'
 
-// Mock dependencies
 vi.mock('@/shared/stores/geocoding', () => ({
     useGeocodingStore: vi.fn(),
 }))
