@@ -36,3 +36,6 @@ Front-end task for Marketer.com
     - No CPU and Network throttling - LCP 0.34s, CLS 0.01
     - CPU 4x slowdown / Network Fast 4G - LCP 2.44s, CLS 0.01
     - CPU 4x slowdown / Network Slow 4G - LCP 6.81s, CLS 0.01
+
+## CI (to main)
+    - Install -> linting -> type check -> tests -> build
