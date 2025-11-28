@@ -18,7 +18,7 @@ export const RecentSearch: FC<Props> = ({ geocoding, onGeocodingSelect }) => {
 
     return (
         <SpotlightCard className="bg-white/1" spotlightColor="rgba(219, 187, 162, 0.2)">
-            <div className="cursor-pointer" onClick={() => onGeocodingSelect(geocoding)}>
+            <button aria-label={`Select ${geocoding.name}, temperature ${weather.main.temp.toFixed(1)}°C`} className="cursor-pointer w-full" onClick={() => onGeocodingSelect(geocoding)}>
                 <div className="text-left text-white">
                     <div className="flex items-center justify-between gap-2">
                         <img className="w-16" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={weather.weather[0].description} />
@@ -28,7 +28,7 @@ export const RecentSearch: FC<Props> = ({ geocoding, onGeocodingSelect }) => {
                     <div className="capitalize opacity-30">{weather.weather[0].description}</div>
                 </div>
 
-            </div>
+            </button>
 
         </SpotlightCard>
 
