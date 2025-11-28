@@ -17,7 +17,6 @@ import { useDebounce } from "@/shared/hooks/use-debounce"
 import { PopoverTrigger } from "@radix-ui/react-popover"
 import { useRecentSearches } from "@/features/weather/hooks/use-recent-search"
 import { geocodingKeyFactory } from "@/features/weather/utils/factories"
-import { Loading } from "@/shared/components/states/loading"
 import { Error } from "@/shared/components/states/error"
 import { Search } from "lucide-react"
 import { useGeocodingStore } from "@/shared/stores/geocoding"
@@ -27,11 +26,12 @@ export const SearchCombobox = () => {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
     const debouncedValue = useDebounce(value, 500)
-    const { geocoding, isLoading, error } = useGeocoding(debouncedValue);
+    const { geocoding, error } = useGeocoding(debouncedValue);
     const { addRecentSearch } = useRecentSearches()
 
-    useEffect(() => debouncedValue.length >= 2 && (geocoding.length > 0 || isLoading) ? setOpen(true) : setOpen(false)
-        , [debouncedValue, geocoding.length, isLoading])
+    useEffect(() => {
+        setOpen(debouncedValue.length >= 2)
+    }, [debouncedValue])
 
     if (error) return <Error message={error.message} />
 
@@ -62,8 +62,8 @@ export const SearchCombobox = () => {
             >
                 <Command shouldFilter={false} className="text-white bg-white/10 backdrop-blur-md border-white/10">
                     <CommandList>
-                        {isLoading ? <Loading /> : geocoding.length === 0 ? (
-                            <CommandEmpty>Search for cities...</CommandEmpty>
+                        {geocoding.length === 0 ? (
+                            <CommandEmpty>{debouncedValue.length > 2 ? "City doesn't exist, try search again" : "Search for cities..."}</CommandEmpty>
                         ) : (
                             <CommandGroup>
                                 {geocoding.map((geo) => (
