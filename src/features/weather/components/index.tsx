@@ -1,5 +1,3 @@
-import { FC } from "react";
-import { Geocoding } from "@/shared/types/types";
 import { WeatherDetails } from "@/features/weather/components/wheater-details";
 import { useWeather } from "@/features/weather/hooks/use-weather";
 import { useGeolocation } from "@/shared/api/use-geolocation";
@@ -7,17 +5,14 @@ import { Loading } from "@/shared/components/states/loading";
 import { Error } from "@/shared/components/states/error";
 import { Search } from "@/features/weather/components/search";
 import { InitialSearch } from "@/features/weather/components/search/initial-search";
+import { useGeocodingStore } from "@/shared/stores/geocoding";
 
-type Props = {
-    geocoding: Geocoding | null
-    handleGeocodingSelect: (geocoding: Geocoding) => void
-}
-
-export const Weather: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
+export const Weather = () => {
+    const { geocoding } = useGeocodingStore()
     const { lat, lon } = useGeolocation()
     const { weather, isWeatherLoading, weatherError } = useWeather(geocoding?.lat ? geocoding.lat : lat || 0, geocoding?.lon ? geocoding.lon : lon || 0);
 
-    if (!weather) { return <InitialSearch handleGeocodingSelect={handleGeocodingSelect} /> }
+    if (!weather) { return <InitialSearch /> }
     if (isWeatherLoading) { return <Loading /> }
     if (weatherError) { return <Error message={weatherError.message} /> }
 
@@ -27,7 +22,7 @@ export const Weather: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
                 <WeatherDetails weather={weather} geocoding={geocoding} />
             </div>
             <div className="col-span-1 h-full space-y-2">
-                <Search handleGeocodingSelect={handleGeocodingSelect} />
+                <Search />
             </div>
         </main>
     </div>

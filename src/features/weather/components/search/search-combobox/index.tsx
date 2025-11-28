@@ -11,7 +11,6 @@ import {
     PopoverContent,
 } from "@/shared/components/ui/popover"
 import { Input } from "@/shared/components/ui/input"
-import { FC } from "react"
 import { Geocoding } from "@/shared/types/types"
 import { useGeocoding } from "@/features/weather/hooks/use-geocoding"
 import { useDebounce } from "@/shared/hooks/use-debounce"
@@ -21,12 +20,10 @@ import { geocodingKeyFactory } from "@/features/weather/utils/factories"
 import { Loading } from "@/shared/components/states/loading"
 import { Error } from "@/shared/components/states/error"
 import { Search } from "lucide-react"
+import { useGeocodingStore } from "@/shared/stores/geocoding"
 
-type Props = {
-    onGeocodingSelect?: (geocoding: Geocoding) => void
-}
-
-export const SearchCombobox: FC<Props> = ({ onGeocodingSelect }) => {
+export const SearchCombobox = () => {
+    const { setGeocoding } = useGeocodingStore()
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
     const debouncedValue = useDebounce(value, 500)
@@ -42,7 +39,7 @@ export const SearchCombobox: FC<Props> = ({ onGeocodingSelect }) => {
         setValue(geocoding.name)
         setOpen(false)
         addRecentSearch(geocoding)
-        onGeocodingSelect?.(geocoding)
+        setGeocoding(geocoding)
     }
 
     return (

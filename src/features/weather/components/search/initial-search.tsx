@@ -1,16 +1,10 @@
-import { Geocoding } from "@/shared/types/types"
 import { Search } from "@/features/weather/components/search"
-import { FC } from "react"
 
-type Props = {
-    handleGeocodingSelect: (geocoding: Geocoding) => void
-}
-
-export const InitialSearch: FC<Props> = ({ handleGeocodingSelect }) =>
+export const InitialSearch = () =>
     <div className="p-10 flex flex-col items-center justify-center text-center h-screen">
         <h1 className="text-5xl font-light text-white text-center">Search for location</h1>
         <p className="text-lg text-white text-center mb-10 opacity-50">or choose from recent searches</p>
         <main className="w-1/2">
-            <Search handleGeocodingSelect={handleGeocodingSelect} />
+            <Search />
         </main>
     </div>
