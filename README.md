@@ -34,9 +34,18 @@ Front-end task for Marketer.com
     - Simplicity — avoids adding a dependency and complexity.
 
 ## Performance
-    - No CPU and Network throttling - LCP 0.34s, CLS 0.01
-    - CPU 4x slowdown / Network Fast 4G - LCP 2.44s, CLS 0.01
-    - CPU 4x slowdown / Network Slow 4G - LCP 6.81s, CLS 0.01
+- No CPU and Network throttling - LCP 0.34s, CLS 0.01
+- CPU 4x slowdown / Network Fast 4G - LCP 2.44s, CLS 0.01
+- CPU 4x slowdown / Network Slow 4G - LCP 6.81s, CLS 0.01
 
 ## CI (to main)
-    - Install -> linting -> type check -> tests -> build
+- Install -> linting -> type check -> tests -> build
+
+## Host
+- AWS - [Live preview](https://dotw0a86zbfzf.cloudfront.net/)
+    - S3 Bucket for static build
+    - CloudFront for HTTPS domain
+
+## Issues
+- When using user's browser geolocation on MacOS, sometimes it's getting temporary 
+CoreLocationProvider: CoreLocation framework reported a kCLErrorLocationUnknown failure - this is a MacOS system caused location error, so probably would be good to improve it to grab user's location using IP fallback

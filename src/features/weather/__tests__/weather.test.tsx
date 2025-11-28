@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { Weather } from '@/features/weather/components/index'
 import { Weather as WeatherType } from '@/shared/types/types'
 import { useGeocodingStore } from '@/shared/stores/geocoding'
-import { useGeolocation } from '@/shared/api/use-geolocation'
+import { useGeolocation } from '@/shared/hooks/use-geolocation'
 import { useWeather } from '@/features/weather/hooks/use-weather'
 
 vi.mock('@/shared/stores/geocoding', () => ({

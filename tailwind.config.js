@@ -9,7 +9,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                'bg-dark-primary': COLORS.background.primary,
+                'bg-primary': COLORS.background.primary,
             },
             fontFamily: {
                 sans: ['Poppins', 'sans-serif'],

@@ -2,7 +2,7 @@ import { Error } from "@/shared/components/states/error";
 import { Loading } from "@/shared/components/states/loading";
 import { ForecastChart } from "@/features/forecast/components/forecast-chart";
 import { useForecast } from "@/features/forecast/hooks/use-forecast";
-import { useGeolocation } from "@/shared/api/use-geolocation";
+import { useGeolocation } from "@/shared/hooks/use-geolocation";
 import { useGeocodingStore } from "@/shared/stores/geocoding";
 
 export const Forecast = () => {

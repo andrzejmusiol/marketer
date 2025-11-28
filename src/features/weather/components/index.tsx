@@ -1,6 +1,6 @@
 import { WeatherDetails } from "@/features/weather/components/wheater-details";
 import { useWeather } from "@/features/weather/hooks/use-weather";
-import { useGeolocation } from "@/shared/api/use-geolocation";
+import { useGeolocation } from "@/shared/hooks/use-geolocation";
 import { Loading } from "@/shared/components/states/loading";
 import { Error } from "@/shared/components/states/error";
 import { Search } from "@/features/weather/components/search";
