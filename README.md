@@ -18,6 +18,7 @@ Front-end task for Marketer.com
 
 ## Commiting mathodology
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification)
+- Disable squashing for commits history preview
 
 ## APIs
 - Open Weather Map 2.5
