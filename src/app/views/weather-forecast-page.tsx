@@ -1,23 +1,24 @@
-import { useState } from "react";
-import { ForecastView } from "@/features/forecast/views";
-import { WeatherView } from "@/features/weather/views";
-import Aurora from "@/shared/components/Aurora";
+import { useState, useCallback } from "react";
+import { Weather } from "@/features/weather/components";
+import { Forecast } from "@/features/forecast/components/forecast";
 import { getAuroraColorStops } from "@/shared/configs/colors";
 import { Geocoding } from "@/shared/types/types";
+import { geocoding } from "@/features/weather/api/geocoding";
+import Aurora from "@/shared/components/bits/aurora-background";
 
 export const WeatherForecastPage = () => {
     const [selectedGeocoding, setSelectedGeocoding] = useState<Geocoding | null>(null);
 
-    const handleGeocodingSelect = (geocoding: Geocoding) => setSelectedGeocoding(geocoding)
+    const handleGeocodingSelect = useCallback((geocoding: Geocoding) => setSelectedGeocoding(geocoding), [geocoding])
 
     return (
         <div className="h-screen w-screen flex flex-col overflow-hidden relative bg-primary">
             <div className="z-10 flex flex-col h-full overflow-y-auto">
                 <div className="flex-shrink-0 md:flex-1 min-h-0">
-                    <WeatherView geocoding={selectedGeocoding} handleGeocodingSelect={handleGeocodingSelect} />
+                    <Weather geocoding={selectedGeocoding} handleGeocodingSelect={handleGeocodingSelect} />
                 </div>
                 <div className="flex-shrink-0 md:flex-1 min-h-0">
-                    <ForecastView geocoding={selectedGeocoding} />
+                    <Forecast geocoding={selectedGeocoding} />
                 </div>
             </div>
             <div className="absolute top-0 left-0 w-full h-full z-0">

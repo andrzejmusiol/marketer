@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '@/globals.css'
 import { QueryProvider } from '@/app/providers/query-provider';
-import { WeatherForecastPage } from './app/views';
+import { WeatherForecastPage } from './app/views/weather-forecast-page';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>

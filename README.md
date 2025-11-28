@@ -23,12 +23,14 @@ Front-end task for Marketer.com
     - [Geocoding API](https://openweathermap.org/api/geocoding-api)
     - [Forecast API](https://openweathermap.org/forecast5)
 
-## UI
- - Aurora backround change depends on weather type
-
 ## Trade-offs
 - No routing - keeping it simple provides value here:
     - No routing library is installed — the app is a single-page app.
     - The Welcome screen is a state-based view — it appears when no weather data exists.
     - No URL/bookmarking needs — users don’t need to share or bookmark the welcome state.
     - Simplicity — avoids adding a dependency and complexity.
+
+## Performance
+    - No CPU and Network throttling - LCP 0.34s, CLS 0.01
+    - CPU 4x slowdown / Network Fast 4G - LCP 2.60s, CLS 0.01
+    - CPU 4x slowdown / Network Slow 4G - LCP 6.81s, CLS 0.01

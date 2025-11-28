@@ -2,8 +2,8 @@ import { FC } from "react"
 import { useRecentSearches } from "@/features/weather/hooks/user-recent-search"
 import { Button } from "@/shared/components/ui/button"
 import { Geocoding } from "@/shared/types/types"
-import { geocodingKeyFactory } from "@/features/weather/utils/utils"
-import { RecentSearch } from "@/features/weather/components/search/recent/recent-search"
+import { geocodingKeyFactory } from "@/features/weather/utils/factories"
+import { RecentSearch } from "@/features/weather/components/search/recent-searches/recent-search"
 
 type Props = {
     onGeocodingSelect: (geocoding: Geocoding) => void

@@ -10,7 +10,7 @@ type Props = {
     geocoding: Geocoding | null
 }
 
-export const ForecastView: FC<Props> = ({ geocoding }) => {
+export const Forecast: FC<Props> = ({ geocoding }) => {
     const { lat, lon } = useGeolocation()
     const { forecast, isForecastLoading, forecastError } = useForecast(geocoding?.lat ? geocoding.lat : lat || 0, geocoding?.lon ? geocoding.lon : lon || 0);
 
