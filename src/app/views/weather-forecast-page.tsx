@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Weather } from "@/features/weather/components";
 import { Forecast } from "@/features/forecast/components/forecast";
-import Aurora from "@/shared/components/Aurora";
 import { getAuroraColorStops } from "@/shared/configs/colors";
 import { Geocoding } from "@/shared/types/types";
+import { geocoding } from "@/features/weather/api/geocoding";
+import Aurora from "@/shared/components/bits/aurora-background";
 
 export const WeatherForecastPage = () => {
     const [selectedGeocoding, setSelectedGeocoding] = useState<Geocoding | null>(null);
 
-    const handleGeocodingSelect = (geocoding: Geocoding) => setSelectedGeocoding(geocoding)
+    const handleGeocodingSelect = useCallback((geocoding: Geocoding) => setSelectedGeocoding(geocoding), [geocoding])
 
     return (
         <div className="h-screen w-screen flex flex-col overflow-hidden relative bg-primary">

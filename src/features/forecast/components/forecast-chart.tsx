@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { ForecastList } from "@/shared/types/types"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
 import { AreaChart, CartesianGrid, XAxis, Area, LabelList } from "recharts"
@@ -10,10 +10,10 @@ type Props = {
 }
 
 export const ForecastChart: FC<Props> = ({ forecast }) => {
-    const chartData = forecast.map((item) => ({
+    const chartData = useMemo(() => forecast.map((item) => ({
         time: chartDataFromatter(item.dt),
         temp: item.main.temp,
-    }))
+    })), [forecast])
 
     const chartConfig = {
         temp: {

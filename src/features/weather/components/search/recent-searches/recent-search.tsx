@@ -2,7 +2,7 @@ import { Geocoding } from "@/shared/types/types"
 import { FC } from "react"
 import { useWeather } from "@/features/weather/hooks/use-weather"
 import { Loading } from "@/shared/components/states/loading"
-import SpotlightCard from "@/shared/components/SpotlightCard"
+import SpotlightCard from "@/shared/components/bits/spotlight-card"
 
 type Props = {
     geocoding: Geocoding
