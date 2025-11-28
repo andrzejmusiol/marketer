@@ -23,9 +23,6 @@ Front-end task for Marketer.com
     - [Geocoding API](https://openweathermap.org/api/geocoding-api)
     - [Forecast API](https://openweathermap.org/forecast5)
 
-## UI
- - Aurora backround change depends on weather type
-
 ## Trade-offs
 - No routing - keeping it simple provides value here:
     - No routing library is installed — the app is a single-page app.

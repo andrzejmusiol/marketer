@@ -2,7 +2,7 @@ import { FC } from "react"
 import { ForecastList } from "@/shared/types/types"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
 import { AreaChart, CartesianGrid, XAxis, Area, LabelList } from "recharts"
-import { chartDataFromatter } from "@/features/forecast/utils"
+import { chartDataFromatter } from "@/features/forecast/utils/charts"
 import { COLORS } from "@/shared/configs/colors"
 
 type Props = {

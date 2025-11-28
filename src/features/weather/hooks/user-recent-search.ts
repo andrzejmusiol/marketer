@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Geocoding } from '@/shared/types/types'
-import { geocodingKeyFactory } from '@/features/weather/utils/utils'
+import { geocodingKeyFactory } from '@/features/weather/utils/factories'
 import { MAX_RECENT_SEARCHES, STORAGE_KEY } from '@/features/weather/utils/constants'
 
 export const useRecentSearches = () => {
