@@ -2,6 +2,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { Forecast } from '@/features/forecast/components/forecast'
 import { ForecastList } from '@/shared/types/types'
+import { useGeocodingStore } from '@/shared/stores/geocoding'
+import { useGeolocation } from '@/shared/api/use-geolocation'
+import { useForecast } from '@/features/forecast/hooks/use-forecast'
 
 vi.mock('@/shared/stores/geocoding', () => ({
     useGeocodingStore: vi.fn(),
@@ -23,9 +26,6 @@ vi.mock('@/features/forecast/components/forecast-chart', () => ({
     ),
 }))
 
-import { useGeocodingStore } from '@/shared/stores/geocoding'
-import { useGeolocation } from '@/shared/api/use-geolocation'
-import { useForecast } from '@/features/forecast/hooks/use-forecast'
 
 const mockUseGeocodingStore = vi.mocked(useGeocodingStore)
 const mockUseGeolocation = vi.mocked(useGeolocation)
