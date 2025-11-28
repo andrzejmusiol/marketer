@@ -1,15 +1,12 @@
-import { FC } from "react"
 import { useRecentSearches } from "@/features/weather/hooks/user-recent-search"
 import { Button } from "@/shared/components/ui/button"
-import { Geocoding } from "@/shared/types/types"
 import { geocodingKeyFactory } from "@/features/weather/utils/factories"
 import { RecentSearch } from "@/features/weather/components/search/recent-searches/recent-search"
+import { useGeocodingStore } from "@/shared/stores/geocoding"
 
-type Props = {
-    onGeocodingSelect: (geocoding: Geocoding) => void
-}
 
-export const RecentSearches: FC<Props> = ({ onGeocodingSelect }) => {
+export const RecentSearches = () => {
+    const { setGeocoding } = useGeocodingStore()
     const { recentSearches, clearRecentSearches } = useRecentSearches()
 
     if (!recentSearches.length) return null
@@ -24,7 +21,7 @@ export const RecentSearches: FC<Props> = ({ onGeocodingSelect }) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {recentSearches.map((geocoding) => (
-                    <RecentSearch key={geocodingKeyFactory(geocoding)} geocoding={geocoding} onGeocodingSelect={onGeocodingSelect} />
+                    <RecentSearch key={geocodingKeyFactory(geocoding)} geocoding={geocoding} onGeocodingSelect={setGeocoding} />
                 ))}
             </div>
 
