@@ -17,12 +17,12 @@ export const Weather = () => {
     if (weatherError) { return <Error message={weatherError.message} /> }
 
     return <div className="p-10">
-        <main className="grid grid-cols-1 md:grid-cols-3 justify-center items-center flex-1 min-h-0">
+        <main className="grid grid-cols-1 md:grid-cols-3">
             <section className="col-span-2" aria-label="Weather details">
                 <p className="sr-only">Weather details</p>
                 <WeatherDetails weather={weather} geocoding={geocoding} />
             </section>
-            <section className="col-span-1 h-full space-y-2" aria-label="Search for city">
+            <section className="col-span-1 mt-5 md:mt-0" aria-label="Search for city">
                 <p className="sr-only">Search for city</p>
                 <Search />
             </section>

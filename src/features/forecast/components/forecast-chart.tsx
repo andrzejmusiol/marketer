@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, useLayoutEffect, useMemo, useState } from "react"
 import { ForecastList } from "@/shared/types/types"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/shared/components/ui/chart"
 import { AreaChart, CartesianGrid, XAxis, Area, LabelList } from "recharts"
@@ -10,10 +10,17 @@ type Props = {
 }
 
 export const ForecastChart: FC<Props> = ({ forecast }) => {
-    const chartData = useMemo(() => forecast.map((item) => ({
+    const [width, setWidth] = useState(0)
+    const isMobile = width < 768
+
+    useLayoutEffect(() => {
+        setWidth(window.innerWidth)
+    }, [])
+
+    const chartData = useMemo(() => forecast.slice(0, isMobile ? 4 : 10).map((item) => ({
         time: chartDataFromatter(item.dt),
         temp: item.main.temp,
-    })), [forecast])
+    })), [forecast, isMobile])
 
     const chartConfig = {
         temp: {
@@ -52,7 +59,7 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
                     tickLine={false}
                     axisLine={false}
                     tickMargin={8}
-                    padding={{ left: 20, right: 20 }}
+
                 />
                 <Area
                     dataKey="temp"
@@ -60,11 +67,11 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
                     fill="url(#fillTemp)"
                     fillOpacity={0.4}
                     stroke={COLORS.chart.gradient.start}
-                    activeDot={{ r: 4 }}
+                    activeDot={{ r: 6 }}
                 >
                     <LabelList
                         dataKey="temp"
-                        fontSize="36px"
+                        fontSize={isMobile ? "24px" : "36px"}
                         fontWeight={300}
                         fontFamily="Poppins"
                         fill="rgba(255, 255, 255, 0.5)"
