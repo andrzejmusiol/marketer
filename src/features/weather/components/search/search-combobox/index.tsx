@@ -55,37 +55,34 @@ export const SearchCombobox = () => {
                     />
                 </div>
             </PopoverTrigger>
-            <PopoverContent
+            {!!geocoding.length && <PopoverContent
                 className="w-[var(--radix-popover-trigger-width)] p-0 bg-white/1 border-white/10"
                 align="start"
                 onOpenAutoFocus={(e) => e.preventDefault()}
             >
                 <Command shouldFilter={false} className="text-white bg-white/10 backdrop-blur-md border-white/10">
                     <CommandList>
-                        {geocoding.length === 0 ? (
-                            <CommandEmpty>{debouncedValue.length > 2 ? "City doesn't exist, try search again" : "Search for cities..."}</CommandEmpty>
-                        ) : (
-                            <CommandGroup>
-                                {geocoding.map((geo) => (
-                                    <CommandItem
-                                        key={geocodingKeyFactory(geo)}
-                                        value={`${geo.name}-${geo.state}-${geo.country}`}
-                                        onSelect={() => handleSelect(geo)}
-                                        className="data-[selected=true]:bg-white/5 my-1 cursor-pointer"
-                                    >
-                                        <div className="flex flex-col">
-                                            <span className="text-white">{geo.name}</span>
-                                            <span className="text-xs text-white/50">
-                                                {geo.state && `${geo.state}, `}{geo.country}
-                                            </span>
-                                        </div>
-                                    </CommandItem>
-                                ))}
-                            </CommandGroup>
-                        )}
+                        <CommandGroup>
+                            {geocoding.map((geo) => (
+                                <CommandItem
+                                    key={geocodingKeyFactory(geo)}
+                                    value={`${geo.name}-${geo.state}-${geo.country}`}
+                                    onSelect={() => handleSelect(geo)}
+                                    className="data-[selected=true]:bg-white/5 my-1 cursor-pointer"
+                                >
+                                    <div className="flex flex-col">
+                                        <span className="text-white">{geo.name}</span>
+                                        <span className="text-xs text-white/50">
+                                            {geo.state && `${geo.state}, `}{geo.country}
+                                        </span>
+                                    </div>
+                                </CommandItem>
+                            ))}
+                        </CommandGroup>
+
                     </CommandList>
                 </Command>
-            </PopoverContent>
+            </PopoverContent>}
         </Popover>
     )
 }
