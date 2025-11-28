@@ -6,18 +6,18 @@ import { useGeolocation } from "@/shared/api/use-geolocation";
 import { Loading } from "@/shared/components/states/loading";
 import { Error } from "@/shared/components/states/error";
 import { Search } from "@/features/weather/components/search";
-import { Welcome } from "@/features/weather/components/welcome";
+import { InitialSearch } from "@/features/weather/components/search/initial-search";
 
 type Props = {
     geocoding: Geocoding | null
     handleGeocodingSelect: (geocoding: Geocoding) => void
 }
 
-const WeatherPage: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
+export const WeatherView: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
     const { lat, lon } = useGeolocation()
     const { weather, isWeatherLoading, weatherError } = useWeather(geocoding?.lat ? geocoding.lat : lat || 0, geocoding?.lon ? geocoding.lon : lon || 0);
 
-    if (!weather) { return <Welcome handleGeocodingSelect={handleGeocodingSelect} /> }
+    if (!weather) { return <InitialSearch handleGeocodingSelect={handleGeocodingSelect} /> }
     if (isWeatherLoading) { return <Loading /> }
     if (weatherError) { return <Error message={weatherError.message} /> }
 
@@ -32,7 +32,4 @@ const WeatherPage: FC<Props> = ({ geocoding, handleGeocodingSelect }) => {
         </main>
     </div>
 }
-
-
-export default WeatherPage;
 

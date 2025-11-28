@@ -20,23 +20,21 @@ export const useRecentSearches = () => {
     }, [])
 
     const addRecentSearch = useCallback((geocoding: Geocoding) => {
-        setRecentSearches(prev => {
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY)
+            const currentSearches: Geocoding[] = stored ? JSON.parse(stored) : []
             const geocodingKey = geocodingKeyFactory(geocoding)
-
-            const filtered = prev.filter(
+            const filtered = currentSearches.filter(
                 geo => geocodingKeyFactory(geo) !== geocodingKey
             )
+            const updatedSearches = [geocoding, ...filtered].slice(0, MAX_RECENT_SEARCHES)
 
-            const recentSearches = [geocoding, ...filtered].slice(0, MAX_RECENT_SEARCHES)
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSearches))
 
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(recentSearches))
-            } catch (error) {
-                console.error('Failed to save recent searches:', error)
-            }
-
-            return recentSearches
-        })
+            setRecentSearches(updatedSearches)
+        } catch (error) {
+            console.error('Failed to add recent search:', error)
+        }
     }, [])
 
     const clearRecentSearches = useCallback(() => {

@@ -2,25 +2,6 @@
 
 Front-end task for Marketer.com
 
-## General requirements
-
-- A build system such as webpack with npm / yarn
-- A frontend / UI framework using React
-- Integration with a weather API of your choice to do lookups / retrieve data
-- Responsiveness. Reformat the design based on experience for larger and smaller screens
-- The web application must be available online at a test URL
-- Unit and integration specs
-
-## UX requirements
-
-- Autocomplete search for cities with error handling
-- List of recently searched cities and their weather/temperature
-- Main weather and temperature should default to your current location (use the method you think to produce the most accurate result with a reasonable fallback mechanism)
-- Weather you search for should display visually and the temperature
-- Criteria we consider
-
-# Assumptions
-
 ## Tech stack
 
 - React
@@ -40,6 +21,7 @@ Front-end task for Marketer.com
 - Open Weather Map 2.5
     - [Current weather data API](https://openweathermap.org/current)
     - [Geocoding API](https://openweathermap.org/api/geocoding-api)
+    - [Forecast API](https://openweathermap.org/forecast5)
 
 ## UI
  - Aurora backround change depends on weather type
