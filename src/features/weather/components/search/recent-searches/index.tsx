@@ -19,7 +19,7 @@ export const RecentSearches = () => {
                     Clear
                 </Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
                 {recentSearches.map((geocoding) => (
                     <RecentSearch key={geocodingKeyFactory(geocoding)} geocoding={geocoding} onGeocodingSelect={setGeocoding} />
                 ))}
