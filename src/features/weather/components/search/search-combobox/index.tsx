@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import {
     Command,
-    CommandEmpty,
     CommandGroup,
     CommandItem,
     CommandList,
