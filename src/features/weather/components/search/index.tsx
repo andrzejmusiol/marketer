@@ -1,5 +1,5 @@
 import { SearchCombobox } from "./search-combobox"
-import { RecentSearches } from "./recent/recent-searches"
+import { RecentSearches } from "./recent-searches"
 import { Geocoding } from "@/shared/types/types"
 import { FC } from "react"
 

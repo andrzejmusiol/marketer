@@ -1,7 +1,6 @@
 import { Weather as WeatherType, Geocoding } from "@/shared/types/types"
 import { FC } from "react"
 import { CircleGauge, MapPin, Sunrise, Sunset, Thermometer } from "lucide-react"
-import { WeatherDetail } from "./weather-detail"
 import { format } from "date-fns"
 
 type Props = {
@@ -23,8 +22,8 @@ export const WeatherDetails: FC<Props> = ({ weather, geocoding }) =>
         <div className="flex items-center justify-start gap-4">
             <h1 className="text-[8vw]">{weather.main.temp.toFixed(1)}°C</h1>
             <div>
-                <WeatherDetail detail={`H: ${weather.main.temp_max.toFixed(1)}°C`} />
-                <WeatherDetail detail={`L: ${weather.main.temp_min.toFixed(1)}°C`} />
+                <div className="text-lg m-2 border border-white/10 bg-white/5 text-center rounded-full px-3 py-1">{`H: ${weather.main.temp_max.toFixed(1)}°C`}</div>
+                <div className="text-lg m-2 border border-white/10 bg-white/5 text-center rounded-full px-3 py-1">{`L: ${weather.main.temp_min.toFixed(1)}°C`}</div>
             </div>
         </div>
         <div className="flex items-center justify-start gap-4 text-lg">
