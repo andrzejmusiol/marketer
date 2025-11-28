@@ -14,13 +14,16 @@ export const useGeocoding = (query: string, enabled: boolean = true) => {
         enabled: enabled && query.length >= 2,
     })
 
-    const uniqueGeocodingSet = new Set<string>()
-    const geocodingList = useMemo(() => data ? data.filter((geocoding: Geocoding) => {
-        const key = `${geocoding.name}-${geocoding.state}-${geocoding.country}`
-        if (uniqueGeocodingSet.has(key)) return false
-        uniqueGeocodingSet.add(key)
-        return true
-    }) : [], [data])
+    const geocodingList = useMemo(() => {
+        if (!data) return []
+        const uniqueGeocodingSet = new Set<string>()
+        return data.filter((geocoding: Geocoding) => {
+            const key = `${geocoding.name}-${geocoding.state}-${geocoding.country}`
+            if (uniqueGeocodingSet.has(key)) return false
+            uniqueGeocodingSet.add(key)
+            return true
+        })
+    }, [data])
 
     return {
         geocoding: geocodingList || [],
