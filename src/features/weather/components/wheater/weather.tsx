@@ -1,6 +1,6 @@
 import { Weather as WeatherType, Geocoding } from "@/shared/types/types"
 import { FC } from "react"
-import { MapPin, Sunrise, Sunset } from "lucide-react"
+import { CircleGauge, MapPin, Sunrise, Sunset, Thermometer } from "lucide-react"
 import { WeatherDetail } from "./weather-detail"
 import { format } from "date-fns"
 
@@ -29,9 +29,8 @@ export const Weather: FC<Props> = ({ weather, geocoding }) =>
             </div>
         </div>
         <div className="flex items-center justify-start gap-4 text-lg">
-            <h3>Feels like: {weather.main.feels_like.toFixed(1)}°C</h3>
-            <h3>Humidity: {weather.main.humidity}%</h3>
-            <h3>Pressure: {weather.main.pressure} hPa</h3>
+            <h3 className="flex items-center gap-2"><Thermometer className="w-6 h-6" />{weather.main.feels_like.toFixed(1)}°C</h3>
+            <h3 className="flex items-center gap-2"><CircleGauge className="w-6 h-6" />{weather.main.pressure} hPa</h3>
         </div>
 
         <p className="capitalize opacity-50 text-[7vw]">{weather.weather[0].description}</p>
