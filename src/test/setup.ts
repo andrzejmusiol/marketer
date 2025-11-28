@@ -2,12 +2,10 @@ import '@testing-library/jest-dom'
 import { cleanup } from '@testing-library/react'
 import { afterEach, vi } from 'vitest'
 
-// Cleanup after each test
 afterEach(() => {
     cleanup()
 })
 
-// Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: vi.fn().mockImplementation((query) => ({
@@ -22,7 +20,6 @@ Object.defineProperty(window, 'matchMedia', {
     })),
 })
 
-// Mock IntersectionObserver
 global.IntersectionObserver = class IntersectionObserver {
     constructor() { }
     disconnect() { }

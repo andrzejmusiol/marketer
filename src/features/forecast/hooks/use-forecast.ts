@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
 import { forecast } from "@/features/forecast/api/forecast"
-import { useMemo } from "react"
 
 export const useForecast = (lat: number, lon: number) => {
     const {
@@ -13,7 +12,7 @@ export const useForecast = (lat: number, lon: number) => {
         enabled: !!lat && !!lon,
     })
 
-    const forecastData = useMemo(() => data?.list.slice(0, 10), [data]) || []
+    const forecastData = data?.list.slice(0, 10)
 
     return {
         forecast: forecastData,

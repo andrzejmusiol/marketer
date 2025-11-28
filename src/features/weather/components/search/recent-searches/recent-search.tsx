@@ -6,7 +6,7 @@ import SpotlightCard from "@/shared/components/bits/spotlight-card"
 
 type Props = {
     geocoding: Geocoding
-    onGeocodingSelect: (city: Geocoding) => void
+    onGeocodingSelect: (geocoding: Geocoding) => void
 }
 
 export const RecentSearch: FC<Props> = ({ geocoding, onGeocodingSelect }) => {

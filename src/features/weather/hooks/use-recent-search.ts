@@ -1,23 +1,19 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { Geocoding } from '@/shared/types/types'
 import { geocodingKeyFactory } from '@/features/weather/utils/factories'
 import { MAX_RECENT_SEARCHES, STORAGE_KEY } from '@/features/weather/utils/constants'
 
 export const useRecentSearches = () => {
-    const [recentSearches, setRecentSearches] = useState<Geocoding[]>([])
-
-    useEffect(() => {
+    const [recentSearches, setRecentSearches] = useState<Geocoding[]>(() => {
         try {
             const stored = localStorage.getItem(STORAGE_KEY)
-            if (stored) {
-                const parsed = JSON.parse(stored) as Geocoding[]
-                setRecentSearches(parsed)
-            }
+            return stored ? JSON.parse(stored) as Geocoding[] : []
         } catch (error) {
             console.error('Failed to load recent searches:', error)
             localStorage.removeItem(STORAGE_KEY)
+            return []
         }
-    }, [])
+    })
 
     const addRecentSearch = useCallback((geocoding: Geocoding) => {
         try {

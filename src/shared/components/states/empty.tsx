@@ -1,7 +1,7 @@
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 
 type Props = {
-    children: React.ReactNode
+    children: ReactNode
 }
 export const Empty: FC<Props> = ({ children }) =>
     <div className="flex items-center justify-center h-full">
