@@ -58,7 +58,6 @@ export const SearchCombobox = () => {
                 align="start"
                 onOpenAutoFocus={(e) => e.preventDefault()}
             >
-
                 <Command shouldFilter={false} className="text-white bg-white/10 backdrop-blur-md border-white/10">
                     <CommandList>
                         <CommandGroup>
@@ -78,10 +77,10 @@ export const SearchCombobox = () => {
                                 </CommandItem>
                             ))}
                         </CommandGroup>
-
                     </CommandList>
                 </Command>
-            </PopoverContent>}
+            </PopoverContent>
+            }
         </Popover>
     )
 }

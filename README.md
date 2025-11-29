@@ -62,6 +62,7 @@ src/
     - [Current weather data API](https://openweathermap.org/current)
     - [Geocoding API](https://openweathermap.org/api/geocoding-api)
     - [Forecast API](https://openweathermap.org/forecast5)
+    - .env has been used for api-key storage, in the real life example we would use backend proxy for safely hit third-part APIs
 
 ## Trade-offs
 - No routing - keeping it simple provides value here:
@@ -69,6 +70,9 @@ src/
     - The initial search -> detailed weather is a state-based view — it appears when no weather data exists.
     - No URL/bookmarking needs — users don’t need to share or bookmark the welcome state.
     - Simplicity — avoids adding a dependency and complexity.
+
+## Recent locations store
+- LocalStorage as a store for this data, since it is not sensitive and doesn't expose app for any exploits
 
 ## Performance
 - No CPU and Network throttling - LCP 0.34s, CLS 0.01

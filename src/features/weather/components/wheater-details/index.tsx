@@ -22,7 +22,6 @@ export const WeatherDetails: FC<Props> = ({ weather, geocoding }) =>
                 <Sunset className="w-6 h-6" />{formatTime(weather.sys.sunset, weather.timezone)}
             </div>
         </div>
-
         <div className="flex items-center justify-start gap-4 flex-wrap">
             <h1 className="md:text-[8vw] text-8xl w-full md:w-auto">{weather.main.temp.toFixed(1)}°C</h1>
             <div className="flex flex-row md:flex-col">
@@ -34,6 +33,5 @@ export const WeatherDetails: FC<Props> = ({ weather, geocoding }) =>
             <h2 className="flex items-center gap-2"><Thermometer className="w-6 h-6" />{weather.main.feels_like.toFixed(1)}°C</h2>
             <h2 className="flex items-center gap-2"><CircleGauge className="w-6 h-6" />{weather.main.pressure} hPa</h2>
         </div>
-
         <h3 className="capitalize opacity-50 text-[7vw]">{weather.weather[0].description}</h3>
     </div>

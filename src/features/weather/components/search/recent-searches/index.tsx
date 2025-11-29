@@ -24,7 +24,6 @@ export const RecentSearches = () => {
                     <RecentSearch key={geocodingKeyFactory(geocoding)} geocoding={geocoding} onGeocodingSelect={setGeocoding} />
                 ))}
             </div>
-
         </div>
     )
 }
