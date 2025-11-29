@@ -121,5 +121,6 @@
     body {
         @apply bg-background text-foreground;
         font-family: 'Poppins', sans-serif;
+        background-color: #171717 !important;
     }
 }

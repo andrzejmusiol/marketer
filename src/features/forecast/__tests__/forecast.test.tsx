@@ -10,7 +10,7 @@ vi.mock('@/shared/stores/geocoding', () => ({
     useGeocodingStore: vi.fn(),
 }))
 
-vi.mock('@/shared/api/use-geolocation', () => ({
+vi.mock('@/shared/hooks/use-geolocation', () => ({
     useGeolocation: vi.fn(),
 }))
 
