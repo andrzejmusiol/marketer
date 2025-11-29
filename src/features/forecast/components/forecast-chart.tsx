@@ -29,7 +29,7 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
     } satisfies ChartConfig
 
     return (
-        <ChartContainer config={chartConfig} className="h-full w-full ">
+        <ChartContainer config={chartConfig} className="h-full w-full forecast-chart">
             <AreaChart
                 accessibilityLayer
                 data={chartData}
@@ -73,7 +73,6 @@ export const ForecastChart: FC<Props> = ({ forecast }) => {
                         dataKey="temp"
                         fontSize={isMobile ? "24px" : "36px"}
                         fontWeight={300}
-                        fontFamily="Poppins"
                         fill="rgba(255, 255, 255, 0.5)"
                         formatter={(value: number) => `${Math.round(value)}°`}
                         position="top"
