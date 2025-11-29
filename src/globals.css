@@ -121,5 +121,10 @@
     body {
         @apply bg-background text-foreground;
         font-family: 'Poppins', sans-serif;
+        background-color: #171717;
     }
+}
+
+.forecast-chart svg text {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
