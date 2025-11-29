@@ -16,17 +16,19 @@ export const Weather = () => {
     if (isWeatherLoading) { return <Loading /> }
     if (weatherError) { return <Error message={weatherError.message} /> }
 
-    return <div className="p-10">
-        <main className="grid grid-cols-1 md:grid-cols-3">
-            <section className="col-span-2" aria-label="Weather details">
-                <p className="sr-only">Weather details</p>
-                <WeatherDetails weather={weather} geocoding={geocoding} />
-            </section>
-            <section className="col-span-1 mt-5 md:mt-0" aria-label="Search for city">
-                <p className="sr-only">Search for city</p>
-                <Search />
-            </section>
-        </main>
-    </div>
+    return (
+        <div className="p-10">
+            <main className="grid grid-cols-1 md:grid-cols-3">
+                <section className="col-span-2" aria-label="Weather details">
+                    <p className="sr-only">Weather details</p>
+                    <WeatherDetails weather={weather} geocoding={geocoding} />
+                </section>
+                <section className="col-span-1 mt-5 md:mt-0" aria-label="Search for city">
+                    <p className="sr-only">Search for city</p>
+                    <Search />
+                </section>
+            </main>
+        </div>
+    )
 }
 

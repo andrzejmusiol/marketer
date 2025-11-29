@@ -27,10 +27,7 @@ export const RecentSearch: FC<Props> = ({ geocoding, onGeocodingSelect }) => {
                     <div>{geocoding.name}</div>
                     <div className="capitalize opacity-30">{weather.weather[0].description}</div>
                 </div>
-
             </button>
-
         </SpotlightCard>
-
     )
 }

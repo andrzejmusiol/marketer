@@ -2,7 +2,7 @@ import { SearchCombobox } from "@/features/weather/components/search/search-comb
 import { RecentSearches } from "@/features/weather/components/search/recent-searches"
 
 export const Search = () =>
-    <div>
+    <>
         <SearchCombobox />
         <RecentSearches />
-    </div>
+    </>
