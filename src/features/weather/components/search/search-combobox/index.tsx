@@ -32,8 +32,6 @@ export const SearchCombobox = () => {
         setOpen(debouncedValue.length >= 2)
     }, [debouncedValue])
 
-    if (error) return <Error message={error.message} />
-
     const handleSelect = (geocoding: Geocoding) => {
         setValue(geocoding.name)
         setOpen(false)
@@ -54,11 +52,13 @@ export const SearchCombobox = () => {
                     />
                 </div>
             </PopoverTrigger>
+            {error && <Error message={error.message} />}
             {!!geocoding.length && <PopoverContent
                 className="w-[var(--radix-popover-trigger-width)] p-0 bg-white/1 border-white/10"
                 align="start"
                 onOpenAutoFocus={(e) => e.preventDefault()}
             >
+
                 <Command shouldFilter={false} className="text-white bg-white/10 backdrop-blur-md border-white/10">
                     <CommandList>
                         <CommandGroup>

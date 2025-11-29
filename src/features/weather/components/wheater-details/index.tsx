@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const WeatherDetails: FC<Props> = ({ weather, geocoding }) =>
-    <div className="h-full w-full text-white space-y-4 md:space-y-6">
+    <div className="h-full w-full text-white space-y-4 mt-5 md:space-y-6 md:mt-0">
         <div className="flex gap-3">
             <div className="flex item-center flex-wrap gap-2">
                 <div className="flex md:w-auto w-full gap-2">
