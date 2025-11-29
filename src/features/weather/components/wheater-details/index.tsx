@@ -11,9 +11,13 @@ type Props = {
 export const WeatherDetails: FC<Props> = ({ weather, geocoding }) =>
     <div className="h-full w-full text-white space-y-4 md:space-y-6">
         <div className="flex gap-3">
-            <MapPin className="w-6 h-6 text-white" />
-            <div className="flex item-center gap-2">
-                <p>{weather.name}</p> {geocoding && <p className="hidden md:block">{geocoding.state} {geocoding.country}</p>}
+            <div className="flex item-center flex-wrap gap-2">
+                <div className="flex md:w-auto w-full gap-2">
+                    <MapPin className="w-6 h-6 text-white" />
+                    <p>{weather.name}</p>
+                    {geocoding && <p>{geocoding.state} {geocoding.country}</p>}
+                </div>
+
                 <Sunrise className="w-6 h-6" />{formatTime(weather.sys.sunrise, weather.timezone)}
                 <Sunset className="w-6 h-6" />{formatTime(weather.sys.sunset, weather.timezone)}
             </div>
